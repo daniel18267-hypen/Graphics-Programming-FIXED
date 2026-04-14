@@ -126,6 +126,7 @@
     <ClInclude Include="Cube.h" />
     <ClInclude Include="GLUTCallbacks.h" />
     <ClInclude Include="HelloGL.h" />
+    <ClInclude Include="meshloader.h" />
     <ClInclude Include="objectloader.h" />
     <ClInclude Include="Structures.h" />
   </ItemGroup>
@@ -134,6 +135,7 @@
     <ClCompile Include="GLUTCallbacks.cpp" />
     <ClCompile Include="HelloGL.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="meshloader.cpp" />
     <ClCompile Include="objectloader.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

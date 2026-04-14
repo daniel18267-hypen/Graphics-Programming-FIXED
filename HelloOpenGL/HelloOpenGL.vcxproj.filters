@@ -30,6 +30,9 @@
     <ClInclude Include="objectloader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="meshloader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HelloGL.cpp">
@@ -45,6 +48,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="objectloader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="meshloader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

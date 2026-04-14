@@ -8,6 +8,7 @@
 #include "Structures.h"
 #include "Cube.h"
 #include "objectloader.h"
+#include "meshloader.h"
 #define RefreshRate 16
 
 
@@ -22,6 +23,8 @@ public:
 		void Display();
 		void Update();
 		void Keyboard(unsigned char key, int x, int y);
+		void InitObjects();
+		void InitGL(int argc, char* argv[]);
 private:
 	float rotation;
 	Camera* camera;

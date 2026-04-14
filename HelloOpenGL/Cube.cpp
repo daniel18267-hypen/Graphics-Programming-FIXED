@@ -1,22 +1,18 @@
 #include "Cube.h"
-Vertex* Cube::indexedvertices = nullptr;
-Color* Cube::indexedcolors = nullptr;
-GLushort* Cube::indices = nullptr;
-int Cube::numvertices = 0;
-int Cube::numcolors = 0;
-int Cube::numindices = 0;
+
 void Cube::Draw() 
 {
-	if (indexedvertices != nullptr && indexedcolors != nullptr && indices != nullptr)
+	if (_mesh->Vertices != nullptr && _mesh->Colors != nullptr && _mesh->Indices != nullptr)
 	{
+
 		glEnableClientState(GL_VERTEX_ARRAY);
 		glEnableClientState(GL_COLOR_ARRAY);
-		glVertexPointer(3, GL_FLOAT, 0, indexedvertices);
-		glColorPointer(3, GL_FLOAT, 0, indexedcolors);
+		glVertexPointer(3, GL_FLOAT, 0, _mesh->Vertices);
+		glColorPointer(3, GL_FLOAT, 0, _mesh->Colors);
 		glPushMatrix();
 		glTranslatef(_position.x, _position.y, _position.z);
 		glRotatef(_rotation, 1.0f, 0.0f, 1.0f);
-		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, indices);
+		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, _mesh->Indices);
 		glPopMatrix();
 		glDisableClientState(GL_COLOR_ARRAY);
 		glDisableClientState(GL_VERTEX_ARRAY);
@@ -27,8 +23,9 @@ void Cube::Update()
 	_rotation += 0.5f;
 }
 
-Cube::Cube(float x, float y, float z)
+Cube::Cube(Mesh* mesh,float x, float y, float z)
 {
+	_mesh = mesh;
 	_position.x = x;
 	_position.y = y;
 	_position.z = z;
@@ -37,40 +34,4 @@ Cube::Cube(float x, float y, float z)
 Cube::~Cube()
 {
 	
-}
-bool Cube::Load(char* path)
-{
-	std::ifstream inFile;
-	inFile.open(path);
-	if (!inFile.good())
-	{
-		std::cerr << "Can't open text file" << path << std::endl;
-		return false;
-	}
-
-	inFile >> numvertices;
-	indexedvertices = new Vertex[numvertices];
-	for (int i = 0; i < numvertices; i++)
-	{
-		inFile >> indexedvertices[i].x;
-		inFile >> indexedvertices[i].y;
-		inFile >> indexedvertices[i].z;
-	}
-	inFile >> numcolors;
-	indexedcolors = new Color[numcolors];
-	for (int i = 0; i < numcolors; i++)
-	{
-		inFile >> indexedcolors[i].r;
-		inFile >> indexedcolors[i].g;
-		inFile >> indexedcolors[i].b;
-	}
-	inFile >> numindices;
-	indices = new GLushort[numindices];
-	for (int i = 0; i < numindices; i++)
-	{
-		inFile >> indices[i];
-	}
-	inFile.close();
-	return true;
-
 }
