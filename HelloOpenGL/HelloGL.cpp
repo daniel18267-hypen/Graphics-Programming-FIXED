@@ -34,7 +34,7 @@ void HelloGL::InitObjects()
 	camera = new Camera();
 	Mesh* cubeMesh = MeshLoader::Load("cube.txt");
 	Mesh* pyramidMesh = MeshLoader::Load("pyramid.txt");
-	objectloader::Load((char*)"teapot.obj");
+	//objectloader::Load((char*)"teapot.obj");
 	for (int i = 0; i < 500; i++)
 	{
 		sceneobject[i] = new Cube(cubeMesh,((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
@@ -61,7 +61,7 @@ void HelloGL::Display()
 	for (int i = 0; i < 1000; i++)
 	{
 		 sceneobject[i]->Draw();
-		object[i]->Draw();
+		//object[i]->Draw();
 	}
 	glFlush();
 	glutSwapBuffers();
@@ -74,7 +74,7 @@ void HelloGL::Update()
 	for (int i = 0; i < 1000; i++)
 	{
 		sceneobject[i]->Update();
-		object[i]->Update();
+		//object[i]->Update();
 	}
 	
 	glutPostRedisplay();
