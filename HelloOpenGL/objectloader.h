@@ -13,13 +13,15 @@ class objectloader
 {
 	private:
 		static std::vector<Vertex>* indexedvertices;
-		static Vertex* faces;
+		static std::vector<Vertex>* faces;
 		static int numvertices, numfaces;
 		static char currentcharacter;
 		static int mode;
 		static int vertexindex;
 		static int facesindex;
 		static int loopcount;
+		static int vertexcount;
+		static int facecount;
 		GLfloat _rotation;
 		Vector3 _position;
 	public:

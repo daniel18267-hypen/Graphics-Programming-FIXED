@@ -9,6 +9,7 @@
 #include "Cube.h"
 #include "objectloader.h"
 #include "meshloader.h"
+#include "Pyramid.h"
 #define RefreshRate 16
 
 
@@ -28,7 +29,7 @@ public:
 private:
 	float rotation;
 	Camera* camera;
-	Cube* cube[1000];
+	SceneObject* sceneobject[1000];
 	objectloader* object[1000];
 };
 

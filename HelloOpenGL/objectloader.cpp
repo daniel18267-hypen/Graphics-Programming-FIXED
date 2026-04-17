@@ -1,25 +1,24 @@
 #include "objectloader.h"
-std::vector<Vertex>* objectloader::indexedvertices = nullptr;
-Vertex* objectloader::faces = nullptr;
+std::vector<Vertex>* objectloader::indexedvertices = new std::vector<Vertex>;
+std::vector<Vertex>* objectloader::faces = new std::vector<Vertex>;
 int objectloader::numvertices = 0;
 int objectloader::numfaces = 0;
 int objectloader::mode = 0;
 int objectloader::vertexindex = 0;
 int objectloader::facesindex = 1;
 int objectloader::loopcount = 1;
+int objectloader::facecount = 1;
+int objectloader::vertexcount = 0;
 char objectloader::currentcharacter = 'a';
 void objectloader::Draw()
 {
 	if (indexedvertices != nullptr && faces != nullptr)
 	{
-		glEnableClientState(GL_VERTEX_ARRAY);
-		glVertexPointer(3, GL_FLOAT, 0, indexedvertices);
-		glPushMatrix();
-		glTranslatef(_position.x, _position.y, _position.z);
-		glRotatef(_rotation, 1.0f, 0.0f, 1.0f);
-		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, faces);
-		glPopMatrix();
-		glDisableClientState(GL_VERTEX_ARRAY);
+		glBegin(GL_TRIANGLES);
+		for (int i = 0; i < facecount; i++)
+		{
+			//glVertex3f(indexedvertices(faces[i]);
+		}
 	}
 }
 
@@ -48,11 +47,12 @@ bool objectloader::Load(char* path)
 		std::cerr << "Can't open text file" << path << std::endl;
 		return false;
 	}
-	while (!inFile.eof())
+	while (inFile.eof())
 	{
+		inFile >> currentcharacter;
+		float x, y, z;
 		loopcount++;
 		std::cout << loopcount;
-		inFile >> currentcharacter;
 		if (currentcharacter == 'v')
 		{
 			mode = 1;
@@ -66,23 +66,25 @@ bool objectloader::Load(char* path)
 		else
 			switch (mode)
 			{
+
 			case 1:
 			{
-				{
-					
-				}
+				inFile >> x >> y >> z;
+				indexedvertices->push_back({ x, y, z });
 			}
+			break;
 			case 2:
 			{
-				{
-					inFile >> faces[facesindex].x;
-					inFile >> faces[facesindex].y;
-					inFile >> faces[facesindex].z;
-					facesindex++;
-				}
+				inFile >> x >> y >> z;
+				indexedvertices->push_back({ x,y,z });
+				facecount++;
 			}
+			break;
 			}
+
+		
 	}
+	
 
 	inFile.close();
 	return true;

@@ -7,11 +7,11 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include "SceneObject.h"
 
-class Cube
+class Cube : public SceneObject
 {
 private:
-	Mesh* _mesh;
 	Vector3 _position;
 	GLfloat _rotation;
 public:

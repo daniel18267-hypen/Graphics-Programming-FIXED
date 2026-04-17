@@ -23,9 +23,9 @@ void Cube::Update()
 	_rotation += 0.5f;
 }
 
-Cube::Cube(Mesh* mesh,float x, float y, float z)
+Cube::Cube(Mesh* mesh, float x, float y, float z) : SceneObject(mesh)
 {
-	_mesh = mesh;
+	
 	_position.x = x;
 	_position.y = y;
 	_position.z = z;

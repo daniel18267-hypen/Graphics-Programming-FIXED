@@ -33,14 +33,19 @@ void HelloGL::InitObjects()
 {
 	camera = new Camera();
 	Mesh* cubeMesh = MeshLoader::Load("cube.txt");
-	//objectloader::Load((char*)"teapot.obj");
-	for (int i = 0; i < 1000; i++)
+	Mesh* pyramidMesh = MeshLoader::Load("pyramid.txt");
+	objectloader::Load((char*)"teapot.obj");
+	for (int i = 0; i < 500; i++)
 	{
-		cube[i] = new Cube(cubeMesh,((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
+		sceneobject[i] = new Cube(cubeMesh,((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
+	}
+	for (int i = 500; i < 1000; i++)
+	{
+		sceneobject[i] = new Pyramid(pyramidMesh, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
 	}
 	for (int i = 0; i < 1000; i++)
 	{
-		//object[i] = new objectloader(((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
+		object[i] = new objectloader(((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
 	}
 	camera->eye.x = 5.0f; camera->eye.y = 5.0f; camera->eye.z = -5.0f;
 	camera->center.x = 0.0f; camera->center.y = 0.0f; camera->center.z = 0.0f;
@@ -55,8 +60,8 @@ void HelloGL::Display()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	for (int i = 0; i < 1000; i++)
 	{
-		 cube[i]->Draw();
-		//object[i]->Draw();
+		 sceneobject[i]->Draw();
+		object[i]->Draw();
 	}
 	glFlush();
 	glutSwapBuffers();
@@ -68,8 +73,8 @@ void HelloGL::Update()
 	gluLookAt(camera->eye.x, camera->eye.y, camera->eye.z, camera->center.x, camera->center.y, camera->center.z, camera->up.x, camera->up.y, camera->up.z);
 	for (int i = 0; i < 1000; i++)
 	{
-		cube[i]->Update();
-		//object[i]->Update();
+		sceneobject[i]->Update();
+		object[i]->Update();
 	}
 	
 	glutPostRedisplay();
