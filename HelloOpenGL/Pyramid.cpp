@@ -23,7 +23,7 @@ void Pyramid::Update()
 {
 	_rotation += 0.5f;
 }
-Pyramid::Pyramid(Mesh* mesh, float x, float y, float z) : SceneObject(mesh)
+Pyramid::Pyramid(Mesh* mesh,Texture2D* texture, float x, float y, float z) : SceneObject(mesh,texture)
 {
 
 	_position.x = x;
