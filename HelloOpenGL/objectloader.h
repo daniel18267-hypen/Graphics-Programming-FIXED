@@ -11,24 +11,18 @@
 #include <vector>
 class objectloader
 {
-	private:
-		static std::vector<Vertex>* indexedvertices;
-		static std::vector<Vertex>* faces;
-		static int numvertices, numfaces;
-		static char currentcharacter;
-		static int mode;
-		static int vertexindex;
-		static int facesindex;
-		static int loopcount;
-		static int vertexcount;
-		static int facecount;
-		GLfloat _rotation;
-		Vector3 _position;
-	public:
-		objectloader(float x, float y, float z);
-		~objectloader();
-		static bool Load(char* path);
-		void Draw();
-		void Update();
+private:
+	GLfloat _rotation;
+	Vector3 _position;
+	std::vector<Vertex>* Vertices;
+	std::vector<Vertex>* Faces;
+	
+	char currentcharacter;
+	int mode;
+public:
+	objectloader(float x, float y, float z);
+	~objectloader();
+	void Update();
+	BasicOBJ* LoadBasic(const char* path);
 };
 

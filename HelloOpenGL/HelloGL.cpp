@@ -33,7 +33,7 @@ void HelloGL::InitGL(int argc, char* argv[])
 void HelloGL::InitObjects()
 {
 	camera = new Camera();
-	Mesh* cubeMesh = MeshLoader::Load("cube.txt");
+	Mesh* cubeMesh = MeshLoader::LoadTextured("cube.txt");
 	Mesh* pyramidMesh = MeshLoader::Load("pyramid.txt");
 	Texture2D* texture = new Texture2D();
 	texture->Load((char*)"Triplet.raw",512,512);

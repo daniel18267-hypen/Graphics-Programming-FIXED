@@ -1,92 +1,76 @@
 #include "objectloader.h"
-std::vector<Vertex>* objectloader::indexedvertices = new std::vector<Vertex>;
-std::vector<Vertex>* objectloader::faces = new std::vector<Vertex>;
-int objectloader::numvertices = 0;
-int objectloader::numfaces = 0;
-int objectloader::mode = 0;
-int objectloader::vertexindex = 0;
-int objectloader::facesindex = 1;
-int objectloader::loopcount = 1;
-int objectloader::facecount = 1;
-int objectloader::vertexcount = 0;
-char objectloader::currentcharacter = 'a';
-void objectloader::Draw()
-{
-	if (indexedvertices != nullptr && faces != nullptr)
+#include <fstream>
+#include <iostream>
+
+std::vector<Vertex>* Faces = nullptr;
+std::vector<Vertex>* Vertices = nullptr;
+	objectloader::objectloader(float x, float y, float z)
 	{
-		glBegin(GL_TRIANGLES);
-		for (int i = 0; i < facecount; i++)
-		{
-			//glVertex3f(indexedvertices(faces[i]);
-		}
+		_position.x = x;
+		_position.y = y;
+		_position.z = z;
+		_rotation = 0.0f;
 	}
-}
-
-objectloader::objectloader(float x, float y, float z)
-{
-	_position.x = x;
-	_position.y = y;
-	_position.z = z;
-	_rotation = 0.0f;
-}
-objectloader::~objectloader()
-{
-
-}
-void objectloader::Update()
-{
-	_rotation += 0.5f;
-}
-
-bool objectloader::Load(char* path)
-{
-	std::ifstream inFile;
-	inFile.open(path);
-	if (!inFile.good())
+	objectloader::~objectloader()
 	{
-		std::cerr << "Can't open text file" << path << std::endl;
-		return false;
+
 	}
-	while (inFile.eof())
+	void objectloader::Update()
 	{
-		inFile >> currentcharacter;
-		float x, y, z;
-		loopcount++;
-		std::cout << loopcount;
-		if (currentcharacter == 'v')
-		{
-			mode = 1;
+		_rotation += 0.5f;
+	}
+	BasicOBJ* objectloader::LoadBasic(const char* path)
+	{
+		BasicOBJ* object = new BasicOBJ();
+		std::ifstream inFile;
+		inFile.open(path);
 
-		}
-		else if (currentcharacter == 'f')
+		if (!inFile.good())
 		{
-
-			mode = 2;
+			std::cerr << "OBJ file can't be opened";
+			return nullptr;
 		}
+
 		else
-			switch (mode)
+		{
+			while (!inFile.eof())
 			{
+				inFile >> currentcharacter;
+				if (currentcharacter == 'v')
+				{
+					mode = 1;
+				}
+				else if (currentcharacter == 'f')
+				{
+					mode = 2;
+				}
+				else
+				{
+					switch (mode)
+					{
+					case 1:
+						GLfloat x, y, z;
+						inFile >> x >> y >> z;
+						Vertices->push_back({x,y,z});
+						
 
-			case 1:
-			{
-				inFile >> x >> y >> z;
-				indexedvertices->push_back({ x, y, z });
+						break;
+
+					case 2:
+						GLfloat x, y, z;
+						inFile >> x >> y >> z;
+						Faces->push_back({ x,y,z });
+						break;
+					default:
+
+
+					}
+
+				}
 			}
-			break;
-			case 2:
-			{
-				inFile >> x >> y >> z;
-				indexedvertices->push_back({ x,y,z });
-				facecount++;
-			}
-			break;
-			}
+			return object;
+		}
 
 		
 	}
-	
 
-	inFile.close();
-	return true;
-
-}

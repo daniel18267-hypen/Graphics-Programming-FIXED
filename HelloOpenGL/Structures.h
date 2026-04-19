@@ -36,5 +36,10 @@ struct Mesh
 	Color* Colors;
 	GLushort* Indices;
 	TexCoord* Texcoords;
-	int VertexCount, ColorCount,TexCoordCount, IndexCount;
+	int VertexCount, ColorCount, TexCoordCount, IndexCount;
+};
+struct BasicOBJ
+{
+	Vertex* Vertices;
+	GLushort* Faces;
 };
