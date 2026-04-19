@@ -38,8 +38,3 @@ struct Mesh
 	TexCoord* Texcoords;
 	int VertexCount, ColorCount, TexCoordCount, IndexCount;
 };
-struct BasicOBJ
-{
-	Vertex* Vertices;
-	GLushort* Faces;
-};

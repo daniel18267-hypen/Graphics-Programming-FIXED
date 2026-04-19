@@ -7,7 +7,6 @@
 #include "GLUTCallbacks.h"
 #include "Structures.h"
 #include "Cube.h"
-#include "objectloader.h"
 #include "meshloader.h"
 #include "Pyramid.h"
 #define RefreshRate 16
@@ -30,6 +29,5 @@ private:
 	float rotation;
 	Camera* camera;
 	SceneObject* sceneobject[1000];
-	objectloader* object[1000];
 };
 

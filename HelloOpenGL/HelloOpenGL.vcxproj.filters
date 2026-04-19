@@ -27,9 +27,6 @@
     <ClInclude Include="Cube.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="objectloader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="meshloader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -54,9 +51,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Cube.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="objectloader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="meshloader.cpp">

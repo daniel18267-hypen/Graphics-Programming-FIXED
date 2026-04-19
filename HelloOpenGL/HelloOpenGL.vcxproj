@@ -127,7 +127,6 @@
     <ClInclude Include="GLUTCallbacks.h" />
     <ClInclude Include="HelloGL.h" />
     <ClInclude Include="meshloader.h" />
-    <ClInclude Include="objectloader.h" />
     <ClInclude Include="Pyramid.h" />
     <ClInclude Include="SceneObject.h" />
     <ClInclude Include="Structures.h" />
@@ -139,7 +138,6 @@
     <ClCompile Include="HelloGL.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="meshloader.cpp" />
-    <ClCompile Include="objectloader.cpp" />
     <ClCompile Include="Pyramid.cpp" />
     <ClCompile Include="SceneObject.cpp" />
     <ClCompile Include="Texture2D.cpp" />
