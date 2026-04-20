@@ -61,7 +61,7 @@ namespace MeshLoader
 	void LoadIndices(ifstream& inFile, Mesh& mesh)
 	{
 		inFile >> mesh.IndexCount;
-		
+
 		if (mesh.IndexCount > 0)
 		{
 			mesh.Indices = new GLushort[mesh.IndexCount];
@@ -87,10 +87,10 @@ namespace MeshLoader
 		}
 		else
 		{
-			LoadVertices(inFile,*mesh);
-			 LoadColours(inFile, *mesh);
-			 LoadTexCoords(inFile, *mesh);
-			 LoadIndices(inFile, *mesh);
+			LoadVertices(inFile, *mesh);
+			LoadColours(inFile, *mesh);
+			LoadTexCoords(inFile, *mesh);
+			LoadIndices(inFile, *mesh);
 		}
 		inFile.close();
 		return mesh;
@@ -122,7 +122,8 @@ namespace MeshLoader
 		Mesh* mesh = new Mesh();
 		ifstream inFile;
 		inFile.open(path);
-
+		mesh->VertexCount = 0;
+		mesh->IndexCount = 0;
 		if (!inFile.good())
 		{
 			cerr << "Can't open file " << path << endl;
@@ -130,17 +131,49 @@ namespace MeshLoader
 		}
 		else
 		{
-			char currentcharacter;
-			inFile >> currentcharacter;
-			if (currentcharacter == 'v')
+			while (!inFile.eof())
 			{
-				mesh->VertexCount++;
+				char currentcharacter;
+				inFile >> currentcharacter;
+				if (currentcharacter == 'v')
+				{
+					mesh->VertexCount++;
+				}
+				else if (currentcharacter == 'f')
+				{
+					mesh->IndexCount++;
+				}
 			}
-			else if (currentcharacter == 'f')
-			{
-				mesh->IndexCount++;
-			}
+			inFile.clear();
+			inFile.seekg(0);
+			mesh->Vertices = new Vertex[mesh->VertexCount];
+			mesh->Indices = new GLushort[mesh->IndexCount];
 
+			while (!inFile.eof())
+			{
+				for (int i = 0; i < mesh->VertexCount; i++)
+				{
+					char throwaway;
+					inFile >> throwaway;
+					inFile >> mesh->Vertices[i].x;
+					inFile >> mesh->Vertices[i].y;
+					inFile >> mesh->Vertices[i].z;
+				}
+				for (int i = 0; i < mesh->IndexCount; i++)
+				{
+					char throwaway;
+					inFile >> throwaway;
+					inFile >> mesh->Indices[i];
+
+
+				}
+
+			}
+			
+			std::cerr << mesh->VertexCount;
+			std::cerr << mesh->IndexCount;
+			inFile.close();
+			return mesh;
 		}
 	}
 }

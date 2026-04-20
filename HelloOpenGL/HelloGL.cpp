@@ -35,11 +35,12 @@ void HelloGL::InitObjects()
 	camera = new Camera();
 	Mesh* cubeMesh = MeshLoader::LoadTextured("cube.txt");
 	Mesh* pyramidMesh = MeshLoader::Load("pyramid.txt");
+	Mesh* objmesh = MeshLoader::LoadAdvanced("teapot.obj");
 	Texture2D* texture = new Texture2D();
 	texture->Load((char*)"Triplet.raw",512,512);
 	for (int i = 0; i < 500; i++)
 	{
-		sceneobject[i] = new Cube(cubeMesh, texture,((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
+		sceneobject[i] = new Cube(objmesh, nullptr,((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
 	}
 	for (int i = 500; i < 1000; i++)
 	{
