@@ -82,7 +82,7 @@ namespace MeshLoader
 
 		if (!inFile.good())
 		{
-			cerr << "Can't open texture file " << path << endl;
+			cerr << "Can't open file" << path << endl;
 			return nullptr;
 		}
 		else
@@ -105,7 +105,7 @@ namespace MeshLoader
 
 		if (!inFile.good())
 		{
-			cerr << "Can't open texture file " << path << endl;
+			cerr << "Can't open  file " << path << endl;
 			return nullptr;
 		}
 		else
@@ -116,5 +116,31 @@ namespace MeshLoader
 		}
 		inFile.close();
 		return mesh;
+	}
+	Mesh* MeshLoader::LoadAdvanced(const char* path)
+	{
+		Mesh* mesh = new Mesh();
+		ifstream inFile;
+		inFile.open(path);
+
+		if (!inFile.good())
+		{
+			cerr << "Can't open file " << path << endl;
+			return nullptr;
+		}
+		else
+		{
+			char currentcharacter;
+			inFile >> currentcharacter;
+			if (currentcharacter == 'v')
+			{
+				mesh->VertexCount++;
+			}
+			else if (currentcharacter == 'f')
+			{
+				mesh->IndexCount++;
+			}
+
+		}
 	}
 }

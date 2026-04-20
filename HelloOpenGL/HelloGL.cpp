@@ -83,6 +83,7 @@ void HelloGL::Update()
 
 void HelloGL::Keyboard(unsigned char key, int x, int y)
 {
+	
 	if (key == 'w')
 	{
 		camera->eye.z += 0.1f;
