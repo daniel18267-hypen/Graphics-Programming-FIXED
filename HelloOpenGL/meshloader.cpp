@@ -30,17 +30,18 @@ namespace MeshLoader
 		}
 	}
 
-	void LoadColours(ifstream& inFile, Mesh& mesh)
+	void LoadNormals(ifstream& inFile, Mesh& mesh)
 	{
-		inFile >> mesh.ColorCount;
-		if (mesh.ColorCount > 0)
+		inFile >> mesh.NormalCount;
+		
+		if (mesh.NormalCount > 0)
 		{
-			mesh.Colors = new Color[mesh.ColorCount];
-			for (int i = 0; i < mesh.ColorCount; i++)
+			mesh.Normals = new Vector3[mesh.NormalCount];
+			for (int i = 0; i < mesh.NormalCount; i++)
 			{
-				inFile >> mesh.Colors[i].r;
-				inFile >> mesh.Colors[i].g;
-				inFile >> mesh.Colors[i].b;
+				inFile >> mesh.Normals[i].x;
+				inFile >> mesh.Normals[i].y;
+				inFile >> mesh.Normals[i].z;
 			}
 		}
 	}
@@ -88,8 +89,8 @@ namespace MeshLoader
 		else
 		{
 			LoadVertices(inFile, *mesh);
-			LoadColours(inFile, *mesh);
 			LoadTexCoords(inFile, *mesh);
+			LoadNormals(inFile, *mesh);
 			LoadIndices(inFile, *mesh);
 		}
 		inFile.close();
@@ -111,7 +112,7 @@ namespace MeshLoader
 		else
 		{
 			LoadVertices(inFile, *mesh);
-			LoadColours(inFile, *mesh);
+			//LoadColours(inFile, *mesh);
 			LoadIndices(inFile, *mesh);
 		}
 		inFile.close();
@@ -142,6 +143,8 @@ namespace MeshLoader
 				else if (currentcharacter == 'f')
 				{
 					mesh->IndexCount++;
+					mesh->IndexCount++;
+					mesh->IndexCount++;
 				}
 			}
 			inFile.clear();
@@ -164,6 +167,8 @@ namespace MeshLoader
 					char throwaway;
 					inFile >> throwaway;
 					inFile >> mesh->Indices[i];
+					inFile >> mesh->Indices[i + 1];
+					inFile >> mesh->Indices[i + 2];
 
 
 				}
@@ -174,6 +179,7 @@ namespace MeshLoader
 			std::cerr << mesh->IndexCount;
 			inFile.close();
 			return mesh;
-		}
-	}
+		} 
+	
+	} 
 }

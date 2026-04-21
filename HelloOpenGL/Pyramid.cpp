@@ -1,5 +1,5 @@
 #include "Pyramid.h"
-void Pyramid::Draw()
+/* void Pyramid::Draw()
 {
 	if (_mesh->Vertices != nullptr && _mesh->Colors != nullptr && _mesh->Indices != nullptr)
 	{
@@ -35,3 +35,4 @@ Pyramid::~Pyramid()
 {
 
 }
+*/

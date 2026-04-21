@@ -5,6 +5,7 @@ HelloGL::HelloGL(int argc, char* argv[])
 	
 	HelloGL::InitGL(argc,argv);
 	HelloGL::InitObjects();
+	HelloGL::InitLighting();
 	glutMainLoop();
 		
 }
@@ -27,25 +28,50 @@ void HelloGL::InitGL(int argc, char* argv[])
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
 	glCullFace(GL_BACK);
 	
+}
+void HelloGL::InitLighting()
+{
+	_lightposition = new Vector4();
+	_lightposition->x = 0.0;
+	_lightposition->y = 0.0;
+	_lightposition->z = 0.0;
+	_lightposition->w = 0.0;
+
+	_lightdata = new Lighting();
+	_lightdata->ambient.x = 0.5;
+	_lightdata->ambient.y = 0.5;
+	_lightdata->ambient.z = 0.5;
+	_lightdata->ambient.w = 1.0;
+	_lightdata->diffuse.x = 2.0;
+	_lightdata->diffuse.y = 2.0;
+	_lightdata->diffuse.z = 2.0;
+	_lightdata->diffuse.w = 1.0;
+	_lightdata->specular.x = 0.2;
+	_lightdata->specular.y = 0.2;
+	_lightdata->specular.z = 0.2;
+	_lightdata->specular.w = 1.0;
 }
 void HelloGL::InitObjects()
 {
 	camera = new Camera();
 	Mesh* cubeMesh = MeshLoader::LoadTextured("cube.txt");
-	Mesh* pyramidMesh = MeshLoader::Load("pyramid.txt");
-	Mesh* objmesh = MeshLoader::LoadAdvanced("teapot.obj");
+	//Mesh* OBJmesh = MeshLoader::LoadAdvanced("teapot.obj");
+	//Mesh* pyramidMesh = MeshLoader::Load("pyramid.txt");
+	//Mesh* objmesh = MeshLoader::LoadAdvanced("teapot.obj");
 	Texture2D* texture = new Texture2D();
 	texture->Load((char*)"Triplet.raw",512,512);
 	for (int i = 0; i < 500; i++)
 	{
-		sceneobject[i] = new Cube(objmesh, nullptr,((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
+		sceneobject[i] = new Cube(cubeMesh, texture,((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
 	}
-	for (int i = 500; i < 1000; i++)
-	{
-		sceneobject[i] = new Pyramid(pyramidMesh,texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
-	}
+	//for (int i = 500; i < 1000; i++)
+	//{
+		//sceneobject[i] = new Pyramid(pyramidMesh,texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
+	//}
 	for (int i = 0; i < 1000; i++)
 	{
 	}
@@ -60,7 +86,7 @@ HelloGL::~HelloGL(void)
 void HelloGL::Display()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	for (int i = 0; i < 1000; i++)
+	for (int i = 0; i < 500; i++)
 	{
 		 sceneobject[i]->Draw();
 		//object[i]->Draw();
@@ -72,8 +98,12 @@ void HelloGL::Display()
 void HelloGL::Update()
 {
 	glLoadIdentity();
+	glLightfv(GL_LIGHT0, GL_AMBIENT, &(_lightdata->ambient.x));
+	glLightfv(GL_LIGHT0, GL_SPECULAR, &(_lightdata->specular.x));
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, &(_lightdata->diffuse.x));
+	glLightfv(GL_LIGHT0, GL_POSITION, &(_lightposition->x));
 	gluLookAt(camera->eye.x, camera->eye.y, camera->eye.z, camera->center.x, camera->center.y, camera->center.z, camera->up.x, camera->up.y, camera->up.z);
-	for (int i = 0; i < 1000; i++)
+	for (int i = 0; i < 500; i++)
 	{
 		sceneobject[i]->Update();
 		//object[i]->Update();

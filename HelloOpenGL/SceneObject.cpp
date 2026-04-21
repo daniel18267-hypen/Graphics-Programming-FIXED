@@ -16,3 +16,7 @@ void SceneObject::Draw()
 {
 
 }
+void SceneObject::InitMaterials()
+{
+
+}
