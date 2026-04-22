@@ -1,5 +1,2 @@
-﻿  HelloGL.cpp
-C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(53,27): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(54,27): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(55,27): warning C4305: '=': truncation from 'double' to 'float'
-  HelloOpenGL.vcxproj -> C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\Debug\HelloOpenGL.exe
+﻿  BasicObject.cpp
+  HelloOpenGL.vcxproj -> C:\Users\danie\Documents\Graphics-Programming-FIXED\Debug\HelloOpenGL.exe
