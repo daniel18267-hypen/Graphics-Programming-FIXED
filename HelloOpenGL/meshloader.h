@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Structures.h"
-
+#include <sstream>
 namespace MeshLoader
 {
 	Mesh* Load(const char* path);

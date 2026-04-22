@@ -7,6 +7,7 @@
 #include "GLUTCallbacks.h"
 #include "Structures.h"
 #include "Cube.h"
+#include "BasicObject.h"
 #include "meshloader.h"
 #include "Pyramid.h"
 #define RefreshRate 16

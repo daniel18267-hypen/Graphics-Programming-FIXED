@@ -123,6 +123,7 @@ namespace MeshLoader
 		Mesh* mesh = new Mesh();
 		ifstream inFile;
 		inFile.open(path);
+		stringstream ss;
 		mesh->VertexCount = 0;
 		mesh->IndexCount = 0;
 		if (!inFile.good())
@@ -151,34 +152,42 @@ namespace MeshLoader
 			inFile.seekg(0);
 			mesh->Vertices = new Vertex[mesh->VertexCount];
 			mesh->Indices = new GLushort[mesh->IndexCount];
-
+			int vertexindex = 0;
+			int faceindex = 0;
 			while (!inFile.eof())
 			{
-				for (int i = 0; i < mesh->VertexCount; i++)
+				char currentcharacter;
+				
+				inFile >> currentcharacter;
+
+				if (currentcharacter == 'v')
 				{
-					char throwaway;
-					inFile >> throwaway;
-					inFile >> mesh->Vertices[i].x;
-					inFile >> mesh->Vertices[i].y;
-					inFile >> mesh->Vertices[i].z;
+					inFile >> mesh->Vertices[vertexindex].x;
+					inFile >> mesh->Vertices[vertexindex].y;
+					inFile >> mesh->Vertices[vertexindex].z;
+					vertexindex++;
 				}
-				for (int i = 0; i < mesh->IndexCount; i++)
+				if (currentcharacter == 'f')
 				{
-					char throwaway;
-					inFile >> throwaway;
-					inFile >> mesh->Indices[i];
-					inFile >> mesh->Indices[i + 1];
-					inFile >> mesh->Indices[i + 2];
+					inFile >> mesh->Indices[faceindex];
+					mesh->Indices[faceindex]--;
+					faceindex++;
+					inFile >> mesh->Indices[faceindex];
+					mesh->Indices[faceindex]--;
+					faceindex++;
+					inFile >> mesh->Indices[faceindex];
+					mesh->Indices[faceindex]--;
+					faceindex++;
 
-
+					
 				}
 
 			}
-			
 			std::cerr << mesh->VertexCount;
 			std::cerr << mesh->IndexCount;
 			inFile.close();
 			return mesh;
+			
 		} 
 	
 	} 
