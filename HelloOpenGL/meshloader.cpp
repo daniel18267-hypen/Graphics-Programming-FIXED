@@ -126,6 +126,8 @@ namespace MeshLoader
 		stringstream ss;
 		mesh->VertexCount = 0;
 		mesh->IndexCount = 0;
+		mesh->TexCoordCount = 0;
+		mesh->NormalCount = 0;
 		if (!inFile.good())
 		{
 			cerr << "Can't open file " << path << endl;
@@ -135,23 +137,37 @@ namespace MeshLoader
 		{
 			while (!inFile.eof())
 			{
+				std::string line;
+				std::getline(inFile, line);
+				inFile >> line;
+				//std::cout << line;
 				char currentcharacter;
 				inFile >> currentcharacter;
-				if (currentcharacter == 'v')
+				if (line == "v")
 				{
 					mesh->VertexCount++;
 				}
-				else if (currentcharacter == 'f')
+				else if (line == "f")
 				{
 					mesh->IndexCount++;
 					mesh->IndexCount++;
 					mesh->IndexCount++;
+				}
+				else if (line == "vn")
+				{
+					mesh->NormalCount++;
+				}
+				else if (line == "vt")
+				{
+					mesh->TexCoordCount++;
 				}
 			}
 			inFile.clear();
 			inFile.seekg(0);
 			mesh->Vertices = new Vertex[mesh->VertexCount];
 			mesh->Indices = new GLushort[mesh->IndexCount];
+			mesh->Normals = new Vector3[mesh->NormalCount];
+			mesh->Texcoords = new TexCoord[mesh->TexCoordCount];
 			int vertexindex = 0;
 			int faceindex = 0;
 			while (!inFile.eof())
@@ -179,7 +195,6 @@ namespace MeshLoader
 					mesh->Indices[faceindex]--;
 					faceindex++;
 
-					
 				}
 
 			}

@@ -33,13 +33,13 @@ void Cube::Update()
 void Cube::InitMaterials()
 {
 	_material = new Material();
-	_material->ambient.x = 0.8; _material->ambient.y = 0.05; _material->ambient.z = 0.05;
-	_material->ambient.w = 1.0;
-	_material->diffuse.x = 0.8; _material->diffuse.y = 0.05; _material->diffuse.z = 0.05;
-	_material->diffuse.w = 1.0;
-	_material->specular.x = 1.0; _material->specular.y = 1.0; _material->specular.z = 1.0;
-	_material->specular.w = 1.0;
-	_material->shininess - 100.0f;
+	_material->ambient.x = 0.8f; _material->ambient.y = 0.05f; _material->ambient.z = 0.05f;
+	_material->ambient.w = 1.0f;
+	_material->diffuse.x = 0.8f; _material->diffuse.y = 0.05f; _material->diffuse.z = 0.05f;
+	_material->diffuse.w = 1.0f;
+	_material->specular.x = 1.0f; _material->specular.y = 1.0f; _material->specular.z = 1.0f;
+	_material->specular.w = 1.0f;
+	_material->shininess = 100.0f;
 }
 Cube::Cube(Mesh* mesh, Texture2D* texture, float x, float y, float z) : SceneObject(mesh, texture)
 {
