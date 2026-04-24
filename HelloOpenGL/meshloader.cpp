@@ -12,7 +12,113 @@ namespace MeshLoader
 	void LoadColours(ifstream& inFile, Mesh& mesh);
 	void LoadIndices(ifstream& inFile, Mesh& mesh);
 	void LoadTexCoords(ifstream& inFile, Mesh& mesh);
+	void AdvancedInitArrays(ifstream& inFile, Mesh& mesh);
+	void AdvancedLoadVertices(ifstream& inFile, Mesh& mesh);
+	void AdvancedLoadBasicFaces(ifstream& inFile, Mesh& mesh);
 
+	void AdvancedLoadBasicFaces(ifstream& inFile, Mesh& mesh)
+	{
+		int faceindex = 0;
+		while (!inFile.eof())
+		{
+			char currentcharacter;
+			inFile >> currentcharacter;
+			if (currentcharacter == 'f')
+			{
+				inFile >> mesh.Indices[faceindex];
+				mesh.Indices[faceindex]--;
+				faceindex++;
+				inFile >> mesh.Indices[faceindex];
+				mesh.Indices[faceindex]--;
+				faceindex++;
+				inFile >> mesh.Indices[faceindex];
+				mesh.Indices[faceindex]--;
+				faceindex++;
+
+			}
+
+		}
+		inFile.clear();
+		inFile.seekg(0);
+	}
+	void AdvancedLoadVertices(ifstream& inFile, Mesh& mesh)
+	{
+		int vertexindex = 0;
+		int faceindex = 0;
+		string line;
+		
+		while (std::getline(inFile, line))
+		{
+			std::cout << "got here";
+			string prefix;
+			stringstream ss(line);
+			ss >> prefix;
+			//char currentcharacter;
+			//inFile >> currentcharacter;
+
+
+
+			if (prefix == "v")
+			{
+				inFile >> mesh.Vertices[vertexindex].x;
+				inFile >> mesh.Vertices[vertexindex].y;
+				inFile >> mesh.Vertices[vertexindex].z;
+				vertexindex++;
+			}
+			/* if (currentcharacter == 'f')
+			{
+				inFile >> mesh.Indices[faceindex];
+				mesh.Indices[faceindex]--;
+				faceindex++;
+				inFile >> mesh.Indices[faceindex];
+				mesh.Indices[faceindex]--;
+				faceindex++;
+				inFile >> mesh.Indices[faceindex];
+				mesh.Indices[faceindex]--;
+				faceindex++;
+
+			} */
+			
+			
+
+		}
+		inFile.clear();
+		inFile.seekg(0);
+	}
+	void AdvancedInitArrays(ifstream& inFile, Mesh& mesh)
+	{
+		while (!inFile.eof())
+		{
+
+			char currentcharacter;
+			inFile >> currentcharacter;
+			if (currentcharacter == 'v')
+			{
+				mesh.VertexCount++;
+			}
+			else if (currentcharacter == 'f')
+			{
+				mesh.IndexCount++;
+				mesh.IndexCount++;
+				mesh.IndexCount++;
+			}
+			/*else if (line == "vn")
+			{
+				mesh->NormalCount++;
+			}
+			else if (line == "vt")
+			{
+				mesh->TexCoordCount++;
+			} */
+		}
+
+		inFile.clear();
+		inFile.seekg(0);
+		mesh.Vertices = new Vertex[mesh.VertexCount];
+		mesh.Indices = new GLushort[mesh.IndexCount];
+		//mesh->Normals = new Vector3[mesh->NormalCount];
+		//mesh->Texcoords = new TexCoord[mesh->TexCoordCount];
+	}
 	void LoadVertices(ifstream& inFile, Mesh& mesh)
 	{
 		inFile >> mesh.VertexCount;
@@ -122,12 +228,13 @@ namespace MeshLoader
 	{
 		Mesh* mesh = new Mesh();
 		ifstream inFile;
-		inFile.open(path);
 		stringstream ss;
+		inFile.open(path);
+		
 		mesh->VertexCount = 0;
 		mesh->IndexCount = 0;
-		mesh->TexCoordCount = 0;
-		mesh->NormalCount = 0;
+		//mesh->TexCoordCount = 0;
+		//mesh->NormalCount = 0;
 		if (!inFile.good())
 		{
 			cerr << "Can't open file " << path << endl;
@@ -135,69 +242,10 @@ namespace MeshLoader
 		}
 		else
 		{
-			while (!inFile.eof())
-			{
-				std::string line;
-				std::getline(inFile, line);
-				inFile >> line;
-				//std::cout << line;
-				char currentcharacter;
-				inFile >> currentcharacter;
-				if (line == "v")
-				{
-					mesh->VertexCount++;
-				}
-				else if (line == "f")
-				{
-					mesh->IndexCount++;
-					mesh->IndexCount++;
-					mesh->IndexCount++;
-				}
-				else if (line == "vn")
-				{
-					mesh->NormalCount++;
-				}
-				else if (line == "vt")
-				{
-					mesh->TexCoordCount++;
-				}
-			}
-			inFile.clear();
-			inFile.seekg(0);
-			mesh->Vertices = new Vertex[mesh->VertexCount];
-			mesh->Indices = new GLushort[mesh->IndexCount];
-			mesh->Normals = new Vector3[mesh->NormalCount];
-			mesh->Texcoords = new TexCoord[mesh->TexCoordCount];
-			int vertexindex = 0;
-			int faceindex = 0;
-			while (!inFile.eof())
-			{
-				char currentcharacter;
-				
-				inFile >> currentcharacter;
-
-				if (currentcharacter == 'v')
-				{
-					inFile >> mesh->Vertices[vertexindex].x;
-					inFile >> mesh->Vertices[vertexindex].y;
-					inFile >> mesh->Vertices[vertexindex].z;
-					vertexindex++;
-				}
-				if (currentcharacter == 'f')
-				{
-					inFile >> mesh->Indices[faceindex];
-					mesh->Indices[faceindex]--;
-					faceindex++;
-					inFile >> mesh->Indices[faceindex];
-					mesh->Indices[faceindex]--;
-					faceindex++;
-					inFile >> mesh->Indices[faceindex];
-					mesh->Indices[faceindex]--;
-					faceindex++;
-
-				}
-
-			}
+			AdvancedInitArrays(inFile , *mesh);
+			AdvancedLoadVertices(inFile, *mesh);
+			AdvancedLoadBasicFaces(inFile, *mesh);
+			
 			std::cerr << mesh->VertexCount;
 			std::cerr << mesh->IndexCount;
 			inFile.close();
