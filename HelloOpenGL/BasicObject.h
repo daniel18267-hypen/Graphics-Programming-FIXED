@@ -7,7 +7,7 @@ private:
 	GLfloat _rotation;
 
 public:
-	BasicObject(Mesh* mesh, float x, float y, float z);
+	BasicObject(Mesh* mesh, Texture2D* texture, float x, float y, float z);
 	~BasicObject();
 	void Draw();
 	void Update();

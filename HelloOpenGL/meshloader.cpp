@@ -16,27 +16,99 @@ namespace MeshLoader
 	void AdvancedLoadVertices(ifstream& inFile, Mesh& mesh);
 	void AdvancedLoadBasicFaces(ifstream& inFile, Mesh& mesh);
 	void AdvancedLoadTextFaces(ifstream& inFile, Mesh& mesh);
-	void AdvancedLoadTextFaces(ifstream& inFile, Mesh& mesh)
+	void AdvancedLoadTexCoords(ifstream& inFile, Mesh& mesh);
+	void AdvancedLoadNormals(ifstream& inFile, Mesh& mesh);
+
+	void AdvancedLoadTexCoords(ifstream& inFile, Mesh& mesh)
 	{
-		int faceindex = 0;
+		int texcoordindex = 0;
+		string line;
+
+		while (std::getline(inFile, line))
+		{
+
+			string prefix;
+			stringstream ss(line);
+			ss >> prefix;
+			//char currentcharacter;
+			//inFile >> currentcharacter;
+
+
+
+			if (prefix == "vt")
+			{
+				ss >> mesh.Texcoords[texcoordindex].u;
+				ss >> mesh.Texcoords[texcoordindex].v;
+
+				texcoordindex++;
+			}
+		}
+		inFile.clear();
+		inFile.seekg(0);
+	}
+	void AdvancedLoadNormals(ifstream& inFile, Mesh& mesh)
+	{
+		int normalindex = 0;
 		string line;
 		while (std::getline(inFile, line))
 		{
 			string prefix;
-			string test;
-			string throwaway;
+			stringstream ss(line);
+			ss >> prefix;
+			if (prefix == "vn")
+			{
+				ss >> mesh.Normals[normalindex].x;
+				ss >> mesh.Normals[normalindex].y;
+				ss >> mesh.Normals[normalindex].z;
+				normalindex++;
+
+			}
+		}
+		inFile.clear();
+		inFile.seekg(0);
+	}
+	void AdvancedLoadTextFaces(ifstream& inFile, Mesh& mesh)
+	{
+		int faceindex = 0;
+		int position = 0;
+		string line;
+		while (std::getline(inFile, line))
+		{
+			string prefix;
+			string vertex, vertex1, vertex2;
+			GLushort face1, face2, face3;
 			stringstream ss(line);
 			
 			ss >> prefix;
-			while (std::getline(ss,line , '/'))
+			if (prefix == "f")
 			{
-				if (prefix == "f")
-				{
-					std::cout << line;
+				ss >> vertex >> vertex1 >> vertex2;
+				position = vertex.find('/');
+				face1 = stoi(vertex.substr(0, position));
+				std::cout << face1 << endl;
+				mesh.Indices[faceindex] = face1;
+				mesh.Indices[faceindex]--;
+				faceindex++;
+				position = vertex1.find('/');
+				face2 = stoi(vertex1.substr(0, position));
+				std::cout << face2 << endl;
+				mesh.Indices[faceindex] = face2;
+				mesh.Indices[faceindex]--;
+				faceindex++;
+				position = vertex2.find('/');
+				face3 = stoi(vertex2.substr(0, position));
+				std::cout << face3 << endl;
+				mesh.Indices[faceindex] = face3;
+				mesh.Indices[faceindex]--;
+				faceindex++;
+				
+				
 
-				}
+				
 			}
 		}
+		inFile.clear();
+		inFile.seekg(0);
 	}
 	void AdvancedLoadBasicFaces(ifstream& inFile, Mesh& mesh)
 	{
@@ -69,7 +141,6 @@ namespace MeshLoader
 	void AdvancedLoadVertices(ifstream& inFile, Mesh& mesh)
 	{
 		int vertexindex = 0;
-		int faceindex = 0;
 		string line;
 		
 		while (std::getline(inFile,line))
@@ -128,22 +199,23 @@ namespace MeshLoader
 				mesh.IndexCount++;
 				mesh.IndexCount++;
 			}
-			else if (line == "vn")
+			else if (prefix == "vn")
 			{
 				mesh.NormalCount++;
 			}
-			else if (line == "vt")
+			else if (prefix == "vt")
 			{
+				std::cout << mesh.TexCoordCount << endl;
 				mesh.TexCoordCount++;
 			} 
 		}
-
-		inFile.clear();
-		inFile.seekg(0);
 		mesh.Vertices = new Vertex[mesh.VertexCount];
 		mesh.Indices = new GLushort[mesh.IndexCount];
-		//mesh->Normals = new Vector3[mesh->NormalCount];
-		//mesh->Texcoords = new TexCoord[mesh->TexCoordCount];
+		mesh.Normals = new Vector3[mesh.NormalCount];
+		mesh.Texcoords = new TexCoord[mesh.TexCoordCount];
+		inFile.clear();
+		inFile.seekg(0);
+		
 	}
 	void LoadVertices(ifstream& inFile, Mesh& mesh)
 	{
@@ -259,8 +331,8 @@ namespace MeshLoader
 		
 		mesh->VertexCount = 0;
 		mesh->IndexCount = 0;
-		//mesh->TexCoordCount = 0;
-		//mesh->NormalCount = 0;
+		mesh->TexCoordCount = 0;
+		mesh->NormalCount = 0;
 		if (!inFile.good())
 		{
 			cerr << "Can't open file " << path << endl;
@@ -272,6 +344,10 @@ namespace MeshLoader
 			AdvancedLoadVertices(inFile, *mesh);
 			//AdvancedLoadBasicFaces(inFile, *mesh);
 			AdvancedLoadTextFaces(inFile, *mesh);
+			AdvancedLoadTexCoords(inFile, *mesh);
+			
+			AdvancedLoadNormals(inFile, *mesh);
+			
 			
 			std::cerr << mesh->VertexCount;
 			std::cerr << mesh->IndexCount;
