@@ -15,23 +15,48 @@ namespace MeshLoader
 	void AdvancedInitArrays(ifstream& inFile, Mesh& mesh);
 	void AdvancedLoadVertices(ifstream& inFile, Mesh& mesh);
 	void AdvancedLoadBasicFaces(ifstream& inFile, Mesh& mesh);
+	void AdvancedLoadTextFaces(ifstream& inFile, Mesh& mesh);
+	void AdvancedLoadTextFaces(ifstream& inFile, Mesh& mesh)
+	{
+		int faceindex = 0;
+		string line;
+		while (std::getline(inFile, line))
+		{
+			string prefix;
+			string test;
+			string throwaway;
+			stringstream ss(line);
+			
+			ss >> prefix;
+			while (std::getline(ss,line , '/'))
+			{
+				if (prefix == "f")
+				{
+					std::cout << line;
 
+				}
+			}
+		}
+	}
 	void AdvancedLoadBasicFaces(ifstream& inFile, Mesh& mesh)
 	{
 		int faceindex = 0;
-		while (!inFile.eof())
+		string line;
+		while (std::getline(inFile, line))
 		{
-			char currentcharacter;
-			inFile >> currentcharacter;
-			if (currentcharacter == 'f')
+			std::cout << line;
+			string prefix;
+			stringstream ss(line);
+			ss >> prefix;
+			if (prefix == "f")
 			{
-				inFile >> mesh.Indices[faceindex];
+				ss >> mesh.Indices[faceindex];
 				mesh.Indices[faceindex]--;
 				faceindex++;
-				inFile >> mesh.Indices[faceindex];
+				ss >> mesh.Indices[faceindex];
 				mesh.Indices[faceindex]--;
 				faceindex++;
-				inFile >> mesh.Indices[faceindex];
+				ss >> mesh.Indices[faceindex];
 				mesh.Indices[faceindex]--;
 				faceindex++;
 
@@ -47,9 +72,9 @@ namespace MeshLoader
 		int faceindex = 0;
 		string line;
 		
-		while (std::getline(inFile, line))
+		while (std::getline(inFile,line))
 		{
-			std::cout << "got here";
+			
 			string prefix;
 			stringstream ss(line);
 			ss >> prefix;
@@ -60,9 +85,9 @@ namespace MeshLoader
 
 			if (prefix == "v")
 			{
-				inFile >> mesh.Vertices[vertexindex].x;
-				inFile >> mesh.Vertices[vertexindex].y;
-				inFile >> mesh.Vertices[vertexindex].z;
+				ss >> mesh.Vertices[vertexindex].x;
+				ss >> mesh.Vertices[vertexindex].y;
+				ss >> mesh.Vertices[vertexindex].z;
 				vertexindex++;
 			}
 			/* if (currentcharacter == 'f')
@@ -86,30 +111,31 @@ namespace MeshLoader
 		inFile.seekg(0);
 	}
 	void AdvancedInitArrays(ifstream& inFile, Mesh& mesh)
-	{
-		while (!inFile.eof())
+	{	
+		string line;
+		while (std::getline(inFile,line))
 		{
-
-			char currentcharacter;
-			inFile >> currentcharacter;
-			if (currentcharacter == 'v')
+			string prefix;
+			stringstream ss(line);
+			ss >> prefix;
+			if (prefix == "v")
 			{
 				mesh.VertexCount++;
 			}
-			else if (currentcharacter == 'f')
+			else if (prefix == "f")
 			{
 				mesh.IndexCount++;
 				mesh.IndexCount++;
 				mesh.IndexCount++;
 			}
-			/*else if (line == "vn")
+			else if (line == "vn")
 			{
-				mesh->NormalCount++;
+				mesh.NormalCount++;
 			}
 			else if (line == "vt")
 			{
-				mesh->TexCoordCount++;
-			} */
+				mesh.TexCoordCount++;
+			} 
 		}
 
 		inFile.clear();
@@ -244,7 +270,8 @@ namespace MeshLoader
 		{
 			AdvancedInitArrays(inFile , *mesh);
 			AdvancedLoadVertices(inFile, *mesh);
-			AdvancedLoadBasicFaces(inFile, *mesh);
+			//AdvancedLoadBasicFaces(inFile, *mesh);
+			AdvancedLoadTextFaces(inFile, *mesh);
 			
 			std::cerr << mesh->VertexCount;
 			std::cerr << mesh->IndexCount;

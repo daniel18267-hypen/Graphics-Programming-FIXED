@@ -59,7 +59,7 @@ void HelloGL::InitObjects()
 {
 	camera = new Camera();
 	Mesh* cubeMesh = MeshLoader::LoadTextured("cube.txt");
-	Mesh* OBJmesh = MeshLoader::LoadAdvanced("teapot.obj");
+	Mesh* OBJmesh = MeshLoader::LoadAdvanced("capsule.obj");
 	//Mesh* pyramidMesh = MeshLoader::Load("pyramid.txt");
 	//Mesh* objmesh = MeshLoader::LoadAdvanced("teapot.obj");
 	Texture2D* texture = new Texture2D();
