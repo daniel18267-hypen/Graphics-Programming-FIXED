@@ -58,3 +58,12 @@ struct Material
 	Vector4 specular;
 	GLfloat shininess;
 };
+struct ListNode
+{
+	SceneObject* data = nullptr;;
+	ListNode* next = nullptr;
+	ListNode()
+	{
+
+	}
+};
