@@ -10,6 +10,7 @@
 #include "BasicObject.h"
 #include "meshloader.h"
 #include "Pyramid.h"
+#include "LinkedList.h"
 #define RefreshRate 16
 
 
@@ -30,7 +31,8 @@ public:
 private:
 	float rotation;
 	Camera* camera;
-	SceneObject* sceneobject[1000];
+	LinkedList* linkedlist;
+	SceneObject* sceneobject;
 	Vector4* _lightposition;
 	Lighting* _lightdata;
 };

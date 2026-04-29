@@ -1,6 +1,8 @@
 #pragma once
 #include "Windows.h"
 #include <gl/GL.h>
+#include <gl/GLU.h>
+class SceneObject;
 struct Vector3
 {
 	float x;
@@ -60,9 +62,13 @@ struct Material
 };
 struct ListNode
 {
-	SceneObject* data = nullptr;;
+	SceneObject* data = nullptr;
 	ListNode* next = nullptr;
 	ListNode()
+	{
+	
+	}
+	~ListNode()
 	{
 
 	}

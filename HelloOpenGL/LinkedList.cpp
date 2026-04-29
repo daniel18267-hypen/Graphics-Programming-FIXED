@@ -28,7 +28,7 @@ ListNode* LinkedList::MakeNode(ListNode** head, SceneObject* object)
 }
 ListNode* LinkedList::InsertFirst(ListNode** head, SceneObject* object)
 {
-	ListNode* NewNode = new ListNode;
+	ListNode* NewNode = new ListNode();
 	NewNode->data = object;
 	NewNode->next = *head;
 	*head = NewNode;
@@ -41,7 +41,7 @@ void LinkedList::InsertAfter(ListNode* lastnode, SceneObject* object)
 		std::cout << "lastnode cannot be null";
 		return;
 	}
-	ListNode* NewNode = new ListNode;
+	ListNode* NewNode = new ListNode();
 	NewNode->data = object;
 	NewNode->next = lastnode->next;
 	lastnode->next = NewNode;
@@ -68,9 +68,10 @@ void LinkedList::DeleteAfter(ListNode* node)
 		delete ptemp;
 	}
 }
-ListNode* LinkedList::GetNode(ListNode* node, int pos)
+ListNode* LinkedList::GetNode(int pos)
 {
 	int count = 0;
+	ListNode* node = nullptr;
 	while (node != nullptr)
 	{
 		if (count == pos)
@@ -98,9 +99,9 @@ ListNode* LinkedList::DeleteNode(ListNode* node, int pos)
 {
 	int count = 0;
 	ListNode* ptemp;
-	while (node != nullptr && node->next != nullptr)
+	while (node != nullptr)
 	{
-		if (count == pos)
+		if (count == (pos - 1))
 		{
 			ptemp = node->next;
 			node->next = ptemp->next;
@@ -110,10 +111,6 @@ ListNode* LinkedList::DeleteNode(ListNode* node, int pos)
 		node = node->next;
 	}
 	return nullptr;
-
-}
-void PrintList(ListNode* node)
-{
 
 }
 
