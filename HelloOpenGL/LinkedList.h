@@ -11,7 +11,8 @@ class LinkedList
 	void Deletelist(ListNode** node);
 	void DeleteAfter(ListNode* node);
 	ListNode* GetNode(ListNode* node, int pos);
-	ListNode* Find(ListNode* node, int val);
+	ListNode* DeleteNode(ListNode* node, int pos);
+	ListNode* Find(ListNode* node, SceneObject* object);
 	void PrintList(ListNode* node);
 
 

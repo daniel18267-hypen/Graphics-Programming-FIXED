@@ -82,8 +82,34 @@ ListNode* LinkedList::GetNode(ListNode* node, int pos)
 	}
 	return nullptr;
 }
-ListNode* LinkedList::Find(ListNode* node, int val)
+ListNode* LinkedList::Find(ListNode* node, SceneObject* object)
 {
+	while (node != nullptr)
+	{
+		if (object == node->data)
+		{
+			return node;
+		}
+		node = node->next;
+	}
+	return nullptr;
+}
+ListNode* LinkedList::DeleteNode(ListNode* node, int pos)
+{
+	int count = 0;
+	ListNode* ptemp;
+	while (node != nullptr && node->next != nullptr)
+	{
+		if (count == pos)
+		{
+			ptemp = node->next;
+			node->next = ptemp->next;
+			delete ptemp;
+		}
+		count++;
+		node = node->next;
+	}
+	return nullptr;
 
 }
 void PrintList(ListNode* node)
