@@ -7,28 +7,36 @@
       "RelativeMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|solutionrelative:HelloOpenGL\\HelloGL.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\HelloGL.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|solutionrelative:HelloOpenGL\\HelloGL.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\Cube.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|solutionrelative:HelloOpenGL\\Cube.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\Structures.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|solutionrelative:HelloOpenGL\\Structures.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\BasicObject.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|solutionrelative:HelloOpenGL\\BasicObject.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\BasicObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|solutionrelative:HelloOpenGL\\BasicObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\SceneObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|solutionrelative:HelloOpenGL\\SceneObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\HelloGL.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|solutionrelative:HelloOpenGL\\HelloGL.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\meshloader.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|solutionrelative:HelloOpenGL\\meshloader.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\GLUTCallbacks.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|solutionrelative:HelloOpenGL\\GLUTCallbacks.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\GLUTCallbacks.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|solutionrelative:HelloOpenGL\\GLUTCallbacks.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\Structures.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|solutionrelative:HelloOpenGL\\Structures.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\LinkedList.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -39,12 +47,12 @@
       "RelativeMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|solutionrelative:HelloOpenGL\\LinkedList.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\meshloader.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|solutionrelative:HelloOpenGL\\meshloader.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\GLUTCallbacks.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|solutionrelative:HelloOpenGL\\GLUTCallbacks.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\SceneObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|solutionrelative:HelloOpenGL\\SceneObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\meshloader.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|solutionrelative:HelloOpenGL\\meshloader.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\SceneObject.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -53,14 +61,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\Cube.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|solutionrelative:HelloOpenGL\\Cube.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\BasicObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|solutionrelative:HelloOpenGL\\BasicObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\BasicObject.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|solutionrelative:HelloOpenGL\\BasicObject.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F1D956F8-9456-4A6E-918A-D22C754AD0C5}|HelloOpenGL\\HelloOpenGL.vcxproj|C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\Texture2D.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -103,7 +103,7 @@
               "RelativeDocumentMoniker": "HelloOpenGL\\HelloGL.cpp",
               "ToolTip": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\HelloGL.cpp",
               "RelativeToolTip": "HelloOpenGL\\HelloGL.cpp",
-              "ViewState": "AgIAAG8AAAAAAAAAAAAAAHwAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAuwK4AAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-03-10T14:56:59.656Z",
               "IsPinned": true,
@@ -111,13 +111,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Cube.cpp",
               "DocumentMoniker": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\Cube.cpp",
               "RelativeDocumentMoniker": "HelloOpenGL\\Cube.cpp",
               "ToolTip": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\Cube.cpp",
               "RelativeToolTip": "HelloOpenGL\\Cube.cpp",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAAB0AAAABAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAB0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-03-15T19:14:55.449Z",
               "IsPinned": true,
@@ -125,33 +125,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "LinkedList.cpp",
-              "DocumentMoniker": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\LinkedList.cpp",
-              "RelativeDocumentMoniker": "HelloOpenGL\\LinkedList.cpp",
-              "ToolTip": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\LinkedList.cpp",
-              "RelativeToolTip": "HelloOpenGL\\LinkedList.cpp",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAAAFAAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-04-28T14:24:00.827Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "LinkedList.h",
-              "DocumentMoniker": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\LinkedList.h",
-              "RelativeDocumentMoniker": "HelloOpenGL\\LinkedList.h",
-              "ToolTip": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\LinkedList.h",
-              "RelativeToolTip": "HelloOpenGL\\LinkedList.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-04-28T14:09:25.871Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "Structures.h",
               "DocumentMoniker": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\Structures.h",
               "RelativeDocumentMoniker": "HelloOpenGL\\Structures.h",
@@ -164,7 +138,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "GLUTCallbacks.h",
               "DocumentMoniker": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\GLUTCallbacks.h",
               "RelativeDocumentMoniker": "HelloOpenGL\\GLUTCallbacks.h",
@@ -178,32 +152,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "GLUTCallbacks.cpp",
-              "DocumentMoniker": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\GLUTCallbacks.cpp",
-              "RelativeDocumentMoniker": "HelloOpenGL\\GLUTCallbacks.cpp",
-              "ToolTip": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\GLUTCallbacks.cpp",
-              "RelativeToolTip": "HelloOpenGL\\GLUTCallbacks.cpp",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAACQAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-03-08T22:53:25.096Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "HelloGL.h",
               "DocumentMoniker": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\HelloGL.h",
               "RelativeDocumentMoniker": "HelloOpenGL\\HelloGL.h",
               "ToolTip": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\HelloGL.h",
               "RelativeToolTip": "HelloOpenGL\\HelloGL.h",
-              "ViewState": "AgIAABcAAAAAAAAAAAAQwCUAAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAQwCIAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2026-03-08T22:40:04.145Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "meshloader.h",
               "DocumentMoniker": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\meshloader.h",
               "RelativeDocumentMoniker": "HelloOpenGL\\meshloader.h",
@@ -216,7 +177,84 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 4,
+              "Title": "SceneObject.h",
+              "DocumentMoniker": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\SceneObject.h",
+              "RelativeDocumentMoniker": "HelloOpenGL\\SceneObject.h",
+              "ToolTip": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\SceneObject.h",
+              "RelativeToolTip": "HelloOpenGL\\SceneObject.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-04-16T14:25:17.151Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BasicObject.h",
+              "DocumentMoniker": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\BasicObject.h",
+              "RelativeDocumentMoniker": "HelloOpenGL\\BasicObject.h",
+              "ToolTip": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\BasicObject.h",
+              "RelativeToolTip": "HelloOpenGL\\BasicObject.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-04-22T11:23:05.105Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BasicObject.cpp",
+              "DocumentMoniker": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\BasicObject.cpp",
+              "RelativeDocumentMoniker": "HelloOpenGL\\BasicObject.cpp",
+              "ToolTip": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\BasicObject.cpp",
+              "RelativeToolTip": "HelloOpenGL\\BasicObject.cpp",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAACsAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-04-22T11:29:23.077Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "LinkedList.cpp",
+              "DocumentMoniker": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\LinkedList.cpp",
+              "RelativeDocumentMoniker": "HelloOpenGL\\LinkedList.cpp",
+              "ToolTip": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\LinkedList.cpp",
+              "RelativeToolTip": "HelloOpenGL\\LinkedList.cpp",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAAFAAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-04-28T14:24:00.827Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "LinkedList.h",
+              "DocumentMoniker": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\LinkedList.h",
+              "RelativeDocumentMoniker": "HelloOpenGL\\LinkedList.h",
+              "ToolTip": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\LinkedList.h",
+              "RelativeToolTip": "HelloOpenGL\\LinkedList.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-04-28T14:09:25.871Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "GLUTCallbacks.cpp",
+              "DocumentMoniker": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\GLUTCallbacks.cpp",
+              "RelativeDocumentMoniker": "HelloOpenGL\\GLUTCallbacks.cpp",
+              "ToolTip": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\GLUTCallbacks.cpp",
+              "RelativeToolTip": "HelloOpenGL\\GLUTCallbacks.cpp",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAACQAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-03-08T22:53:25.096Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "Cube.h",
               "DocumentMoniker": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\Cube.h",
               "RelativeDocumentMoniker": "HelloOpenGL\\Cube.h",
@@ -228,19 +266,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "BasicObject.h",
-              "DocumentMoniker": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\BasicObject.h",
-              "RelativeDocumentMoniker": "HelloOpenGL\\BasicObject.h",
-              "ToolTip": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\BasicObject.h",
-              "RelativeToolTip": "HelloOpenGL\\BasicObject.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-04-22T11:23:05.105Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "meshloader.cpp",
               "DocumentMoniker": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\meshloader.cpp",
               "RelativeDocumentMoniker": "HelloOpenGL\\meshloader.cpp",
@@ -252,19 +278,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "BasicObject.cpp",
-              "DocumentMoniker": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\BasicObject.cpp",
-              "RelativeDocumentMoniker": "HelloOpenGL\\BasicObject.cpp",
-              "ToolTip": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\BasicObject.cpp",
-              "RelativeToolTip": "HelloOpenGL\\BasicObject.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACwAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-04-22T11:29:23.077Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "SceneObject.cpp",
               "DocumentMoniker": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\SceneObject.cpp",
               "RelativeDocumentMoniker": "HelloOpenGL\\SceneObject.cpp",
@@ -273,18 +287,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-04-16T14:27:39.851Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "SceneObject.h",
-              "DocumentMoniker": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\SceneObject.h",
-              "RelativeDocumentMoniker": "HelloOpenGL\\SceneObject.h",
-              "ToolTip": "C:\\Users\\danie\\Documents\\Graphics-Programming-FIXED\\HelloOpenGL\\SceneObject.h",
-              "RelativeToolTip": "HelloOpenGL\\SceneObject.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-04-16T14:25:17.151Z"
             },
             {
               "$type": "Document",

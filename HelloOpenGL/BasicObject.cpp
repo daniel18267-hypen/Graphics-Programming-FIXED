@@ -41,5 +41,5 @@ void BasicObject::Draw()
 }
 void BasicObject::Update()
 {
-
+	_rotation += 90.0f;
 }

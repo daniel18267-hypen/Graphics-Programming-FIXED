@@ -59,10 +59,14 @@ void HelloGL::InitLighting()
 void HelloGL::InitObjects()
 {
 	yaw = -90.0f;
+	index = 0;
 	camera = new Camera();
+	
+	objectselectmode = false;
 	Mesh* cubeMesh = MeshLoader::LoadTextured("cube.txt");
 	Mesh* OBJmesh = MeshLoader::LoadAdvanced("capsule.obj");
 	 linkedlist = new LinkedList();
+	 
 	//Mesh* pyramidMesh = MeshLoader::Load("pyramid.txt");
 	//Mesh* objmesh = MeshLoader::LoadAdvanced("teapot.obj");
 	Texture2D* texture = new Texture2D();
@@ -70,9 +74,11 @@ void HelloGL::InitObjects()
 	
 	sceneobject = new Cube(cubeMesh, texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
 	linkedlist->head->data = sceneobject;
-	for (int i = 0; i < 500; i++)
+	listlength++;
+	for (int i = 0; i < 3; i++)
 	{
 		sceneobject = new Cube(cubeMesh, texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
+		listlength++;
 		linkedlist->MakeNode(&linkedlist->head, sceneobject);
 	}
 
@@ -87,6 +93,7 @@ void HelloGL::InitObjects()
 	camera->eye.x = 5.0f; camera->eye.y = 5.0f; camera->eye.z = -5.0f;
 	camera->center.x = 0.0f; camera->center.y = 0.0f; camera->center.z = 0.0f;
 	camera->up.x = 0.0f; camera->up.y = 1.0f; camera->up.z = 0.0f;
+	currentobject = linkedlist->GetNode(0)->data;
 }
 HelloGL::~HelloGL(void)
 {
@@ -96,7 +103,7 @@ void HelloGL::Display()
 {
 	
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	for (int i = 0; i < 500; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		ListNode* node = linkedlist->GetNode(i);
 		node->data->Draw();
@@ -133,24 +140,62 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 	
 	if (key == 'w')
 	{
-		camera->eye.x += 0.5f * front.x;
-		camera->eye.y += 0.5f * front.y;
-		camera->eye.z += 0.5f * front.z;
-		camera->center.x = camera->eye.x + front.x;
-		camera->center.y = camera->eye.y + front.y;
-		camera->center.z = camera->eye.z + front.z;
-
+		if (objectselectmode == false)
+		{
+			camera->eye.x += 0.5f * front.x;
+			camera->eye.y += 0.5f * front.y;
+			camera->eye.z += 0.5f * front.z;
+			camera->center.x = camera->eye.x + front.x;
+			camera->center.y = camera->eye.y + front.y;
+			camera->center.z = camera->eye.z + front.z;
+		}
+		if (objectselectmode == true)
+		{
+			currentobject->Update();
+		}
 		//camera->center.z += 0.1f;
 	}
 	if (key == 's')
 	{
-		camera->eye.x -= 0.5f * front.x;
-		camera->eye.y -= 0.5f * front.y;
-		camera->eye.z -= 0.5f * front.z;
-		camera->center.x = camera->eye.x + front.x;
-		camera->center.y = camera->eye.y + front.y;
-		camera->center.z = camera->eye.z + front.z;
+		if (objectselectmode == false)
+		{
+			camera->eye.x -= 0.5f * front.x;
+			camera->eye.y -= 0.5f * front.y;
+			camera->eye.z -= 0.5f * front.z;
+			camera->center.x = camera->eye.x + front.x;
+			camera->center.y = camera->eye.y + front.y;
+			camera->center.z = camera->eye.z + front.z;
+		}
 	}
+	if (key == 'j' && objectselectmode == true)
+	{
+		currentobject = linkedlist->GetNode(index)->data;
+		index++;
+		if (index >= listlength)
+		{
+			index = 0;
+		}
+		
+	}
+	if (key == 'h' && objectselectmode == true)
+	{
+		currentobject = linkedlist->GetNode(index)->data;
+		index--;
+		if (index < 0)
+		{
+			index = 0;
+		}
+	}
+	if (key == 'f')
+	{
+		 objectselectmode = true;
+	}
+	if (key == 'e')
+	{
+		 objectselectmode = false;
+	}
+
+	
 	
 }
 void HelloGL::Mouse(int x, int y)

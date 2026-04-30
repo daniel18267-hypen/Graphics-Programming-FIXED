@@ -32,13 +32,17 @@ public:
 private:
 	float rotation;
 	int lastx;
+	bool objectselectmode;
 	int lasty;
+	int index;
+	int listlength;
 	int yaw;
 	int pitch;
 	Vector3 front;
 	Camera* camera;
 	LinkedList* linkedlist;
 	SceneObject* sceneobject;
+	SceneObject* currentobject;
 	Vector4* _lightposition;
 	Lighting* _lightdata;
 };
