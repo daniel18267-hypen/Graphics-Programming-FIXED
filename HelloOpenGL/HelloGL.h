@@ -25,11 +25,17 @@ public:
 		void Display();
 		void Update();
 		void Keyboard(unsigned char key, int x, int y);
+		void Mouse(int x, int y);
 		void InitObjects();
 		void InitLighting();
 		void InitGL(int argc, char* argv[]);
 private:
 	float rotation;
+	int lastx;
+	int lasty;
+	int yaw;
+	int pitch;
+	Vector3 front;
 	Camera* camera;
 	LinkedList* linkedlist;
 	SceneObject* sceneobject;

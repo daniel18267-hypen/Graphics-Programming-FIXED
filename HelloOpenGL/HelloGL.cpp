@@ -18,6 +18,7 @@ void HelloGL::InitGL(int argc, char* argv[])
 	glutInitWindowPosition(100, 100);
 	glutCreateWindow("Simple OpenGL Program");
 	glutKeyboardFunc(GLUTCallbacks::Keyboard);
+	glutPassiveMotionFunc(GLUTCallbacks::Mouse);
 	glutDisplayFunc(GLUTCallbacks::Display);
 	glutTimerFunc(RefreshRate, GLUTCallbacks::Timer, RefreshRate);
 	glMatrixMode(GL_PROJECTION);
@@ -57,6 +58,7 @@ void HelloGL::InitLighting()
 }
 void HelloGL::InitObjects()
 {
+	yaw = -90.0f;
 	camera = new Camera();
 	Mesh* cubeMesh = MeshLoader::LoadTextured("cube.txt");
 	Mesh* OBJmesh = MeshLoader::LoadAdvanced("capsule.obj");
@@ -96,7 +98,7 @@ void HelloGL::Display()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	for (int i = 0; i < 500; i++)
 	{
-		ListNode* node = linkedlist->GetNode(1);
+		ListNode* node = linkedlist->GetNode(i);
 		node->data->Draw();
 	}
 	for (int i = 500; i < 1000; i++)
@@ -131,23 +133,53 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 	
 	if (key == 'w')
 	{
-		camera->eye.z += 0.1f;
-		camera->center.z += 0.1f;
+		camera->eye.x += 0.5f * front.x;
+		camera->eye.y += 0.5f * front.y;
+		camera->eye.z += 0.5f * front.z;
+		camera->center.x = camera->eye.x + front.x;
+		camera->center.y = camera->eye.y + front.y;
+		camera->center.z = camera->eye.z + front.z;
+
+		//camera->center.z += 0.1f;
 	}
 	if (key == 's')
 	{
-		camera->eye.z -= 0.1f;
-		camera->center.z -= 0.1f;
+		camera->eye.x -= 0.5f * front.x;
+		camera->eye.y -= 0.5f * front.y;
+		camera->eye.z -= 0.5f * front.z;
+		camera->center.x = camera->eye.x + front.x;
+		camera->center.y = camera->eye.y + front.y;
+		camera->center.z = camera->eye.z + front.z;
 	}
-	if (key == 'a')
+	
+}
+void HelloGL::Mouse(int x, int y)
+{
+	int xdiff = x - lastx;
+	int ydiff = y - lasty;
+	float sensitivity = 1;
+	lastx = x;
+	lasty = y;
+	yaw += xdiff * sensitivity;
+	pitch += ydiff * (sensitivity * 2);
+	if (pitch > 90.0f)
 	{
-		camera->eye.x += 0.1f;
-		camera->center.x += 0.1f;
+		pitch = 90.0f;
 	}
-	if (key == 'd')
-	{
-		camera->eye.x -= 0.1f;
-		camera->center.x -= 0.1f;
-	}
+	float yawrad = (yaw * (3.14f / 180));
+	float pitchrad = (pitch * (3.14f / 180));
+	front.x = cos(yawrad) * cos(pitchrad);
+	front.y = sin(pitchrad);
+	front.z = cos(pitchrad) * sin(yawrad);
+	/*float length = sqrt(front.x * front.x + front.y * front.y + front.z * front.z);
+	front.x /= length;
+	front.y /= length;
+	front.z /= length; */
+	camera->center.x = camera->eye.x + front.x;
+	camera->center.y = camera->eye.y + front.y;
+	camera->center.z = camera->eye.z + front.z;
+
+
+	
 }
 

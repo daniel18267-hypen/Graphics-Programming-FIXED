@@ -71,7 +71,7 @@ void LinkedList::DeleteAfter(ListNode* node)
 ListNode* LinkedList::GetNode(int pos)
 {
 	int count = 0;
-	ListNode* node = nullptr;
+	ListNode* node = head;
 	while (node != nullptr)
 	{
 		if (count == pos)

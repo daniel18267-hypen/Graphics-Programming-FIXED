@@ -32,4 +32,8 @@ namespace GLUTCallbacks
 	{
 		helloGL->Keyboard(key,x,y);
 	}
+	void Mouse(int x, int y)
+	{
+		helloGL->Mouse(x, y);
+	}
 }
