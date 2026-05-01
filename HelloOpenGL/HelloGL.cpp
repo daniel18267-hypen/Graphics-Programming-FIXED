@@ -61,10 +61,10 @@ void HelloGL::InitObjects()
 	yaw = -90.0f;
 	index = 0;
 	camera = new Camera();
-	
+	firstobject = true;
 	objectselectmode = false;
 	Mesh* cubeMesh = MeshLoader::LoadTextured("cube.txt");
-	Mesh* OBJmesh = MeshLoader::LoadAdvanced("capsule.obj");
+	Mesh* OBJmesh = MeshLoader::LoadAdvanced("monkey.obj");
 	 linkedlist = new LinkedList();
 	 
 	//Mesh* pyramidMesh = MeshLoader::Load("pyramid.txt");
@@ -72,14 +72,24 @@ void HelloGL::InitObjects()
 	Texture2D* texture = new Texture2D();
 	texture->Load((char*)"Triplet.raw",512,512);
 	
-	sceneobject = new Cube(cubeMesh, texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
-	linkedlist->head->data = sceneobject;
-	listlength++;
+	
 	for (int i = 0; i < 3; i++)
 	{
-		sceneobject = new Cube(cubeMesh, texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
-		listlength++;
-		linkedlist->MakeNode(&linkedlist->head, sceneobject);
+		if (firstobject == true)
+		{
+			sceneobject = new BasicObject(OBJmesh, texture, xpos,ypos,zpos);
+			linkedlist->head->data = sceneobject;
+			listlength++;
+			xpos += 5;
+			firstobject = false;
+		}
+		else
+		{
+			sceneobject = new BasicObject(OBJmesh, texture, xpos, ypos, zpos);
+			listlength++;
+			linkedlist->MakeNode(&linkedlist->head, sceneobject);
+			xpos += 5;
+		}
 	}
 
 	//for (int i = 500; i < 1000; i++)
@@ -179,12 +189,14 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 	}
 	if (key == 'h' && objectselectmode == true)
 	{
-		currentobject = linkedlist->GetNode(index)->data;
 		index--;
+		
+		
 		if (index < 0)
 		{
-			index = 0;
+			index = listlength-1;
 		}
+		currentobject = linkedlist->GetNode(index)->data;
 	}
 	if (key == 'f')
 	{
