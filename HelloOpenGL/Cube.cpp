@@ -18,7 +18,7 @@ void Cube::Draw()
 		glMaterialf(GL_FRONT, GL_SHININESS, _material->shininess);
 		glPushMatrix();
 		glTranslatef(_position.x, _position.y, _position.z);
-		glRotatef(_rotation, 1.0f, 0.0f, 0.0f);
+		glRotatef(_rotation, rotationx,rotationy,rotationz);
 		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, _mesh->Indices);
 		glPopMatrix();
 		glDisableClientState(GL_NORMAL_ARRAY);
@@ -29,6 +29,12 @@ void Cube::Draw()
 void Cube::Update()
 {
 	_rotation += 0.5f;
+}
+void Cube::Rotate(GLfloat rotx,  GLfloat roty, GLfloat rotz)
+{
+	rotationx = rotx;
+	rotationy = roty;
+	rotationz = rotz;
 }
 void Cube::InitMaterials()
 {

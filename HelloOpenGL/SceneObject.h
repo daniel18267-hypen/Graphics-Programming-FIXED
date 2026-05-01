@@ -12,6 +12,8 @@ public:
 
 	virtual void Update();
 	virtual void Draw();
+	virtual void Rotate(GLfloat rotx, GLfloat roty, GLfloat rotz);
 	virtual void InitMaterials();
+	virtual Vector3 GetPos();
 };
 

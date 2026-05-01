@@ -30,9 +30,14 @@ void BasicObject::Draw()
 	glVertexPointer(3, GL_FLOAT, 0, _mesh->Vertices);
 	glNormalPointer(GL_FLOAT, 0, _mesh->Normals);
 	glTexCoordPointer(2, GL_FLOAT, 0, _mesh->Texcoords);
+	BasicObject::InitMaterials();
+	glMaterialfv(GL_FRONT, GL_AMBIENT, &(_material->ambient.x));
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, &(_material->diffuse.x));
+	glMaterialfv(GL_FRONT, GL_SPECULAR, &(_material->specular.x));
+	glMaterialf(GL_FRONT, GL_SHININESS, _material->shininess);
 	glPushMatrix();
 	glTranslatef(_position.x, _position.y, _position.z);
-	glRotatef(_rotation, 1.0f, 0.0f, 1.0f);
+	glRotatef(_rotation, rotationx,rotationy,rotationz);
 	glDrawElements(GL_TRIANGLES, _mesh->IndexCount, GL_UNSIGNED_SHORT, _mesh->Indices);
 	glPopMatrix();
 	glDisableClientState(GL_NORMAL_ARRAY);
@@ -41,5 +46,28 @@ void BasicObject::Draw()
 }
 void BasicObject::Update()
 {
+	//_rotation += 90.0f;
+	_position.x += 0.1f;
+}
+void BasicObject::Rotate(GLfloat rotx, GLfloat roty, GLfloat rotz)
+{
+	rotationx = rotx;
+	rotationy = roty;
+	rotationz = rotz;
 	_rotation += 90.0f;
+}
+Vector3 BasicObject::GetPos()
+{
+	return _position;
+}
+void BasicObject::InitMaterials()
+{
+	_material = new Material();
+	_material->ambient.x = 0.8f; _material->ambient.y = 0.05f; _material->ambient.z = 0.05f;
+	_material->ambient.w = 1.0f;
+	_material->diffuse.x = 0.8f; _material->diffuse.y = 0.05f; _material->diffuse.z = 0.05f;
+	_material->diffuse.w = 1.0f;
+	_material->specular.x = 1.0f; _material->specular.y = 1.0f; _material->specular.z = 1.0f;
+	_material->specular.w = 1.0f;
+	_material->shininess = 100.0f;
 }

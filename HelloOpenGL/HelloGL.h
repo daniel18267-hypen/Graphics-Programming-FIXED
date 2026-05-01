@@ -37,9 +37,11 @@ private:
 	int index;
 	int listlength;
 	int yaw;
+	float offset;
 	int pitch;
 	int xpos, ypos, zpos;
 	bool firstobject;
+	Vector3 objectpos;
 	Vector3 front;
 	Camera* camera;
 	LinkedList* linkedlist;

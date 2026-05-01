@@ -60,6 +60,7 @@ void HelloGL::InitObjects()
 {
 	yaw = -90.0f;
 	index = 0;
+	offset = 5.0f;
 	camera = new Camera();
 	firstobject = true;
 	objectselectmode = false;
@@ -135,13 +136,24 @@ void HelloGL::Update()
 	glLightfv(GL_LIGHT0, GL_SPECULAR, &(_lightdata->specular.x));
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, &(_lightdata->diffuse.x));
 	glLightfv(GL_LIGHT0, GL_POSITION, &(_lightposition->x));
-	gluLookAt(camera->eye.x, camera->eye.y, camera->eye.z, camera->center.x, camera->center.y, camera->center.z, camera->up.x, camera->up.y, camera->up.z);
+	if (objectselectmode == false)
+	{
+		gluLookAt(camera->eye.x, camera->eye.y, camera->eye.z, camera->center.x, camera->center.y, camera->center.z, camera->up.x, camera->up.y, camera->up.z);
+	}
+	if (objectselectmode == true)
+	{
+		objectpos = currentobject->GetPos();
+		gluLookAt(objectpos.x - offset, objectpos.y - offset, objectpos.z - offset, objectpos.x,objectpos.y,objectpos.z, camera->up.x, camera->up.y, camera->up.z);
+	}
 	//for (int i = ; i < 500; i++)
 	//{
 	//	sceneobject[i]->Update();
 		//object[i]->Update();
 	//}
-	
+	for (int i = 0; i < listlength; i++)
+	{
+		linkedlist->GetNode(i)->data->Update();
+	}
 	glutPostRedisplay();
 }
 
@@ -161,7 +173,7 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 		}
 		if (objectselectmode == true)
 		{
-			currentobject->Update();
+			currentobject->Rotate(1.0f, 0.0f, 0.0f);
 		}
 		//camera->center.z += 0.1f;
 	}
@@ -198,13 +210,11 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 		}
 		currentobject = linkedlist->GetNode(index)->data;
 	}
-	if (key == 'f')
-	{
-		 objectselectmode = true;
-	}
+	
 	if (key == 'e')
 	{
-		 objectselectmode = false;
+		objectselectmode = !objectselectmode;
+		std::cout << objectselectmode;
 	}
 
 	

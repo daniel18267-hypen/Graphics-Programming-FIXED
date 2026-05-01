@@ -21,3 +21,11 @@ void SceneObject::InitMaterials()
 {
 
 }
+void SceneObject::Rotate(GLfloat rotx, GLfloat roty, GLfloat rotz)
+{
+
+}
+Vector3 SceneObject::GetPos()
+{
+	return Vector3();
+}
