@@ -66,7 +66,7 @@ void HelloGL::InitObjects()
 	objectselectmode = false;
 	Mesh* cubeMesh = MeshLoader::LoadTextured("cube.txt");
 	Mesh* OBJmesh = MeshLoader::LoadAdvanced("monkey.obj");
-	 linkedlist = new LinkedList();
+	linkedlist = new LinkedList();
 	 
 	//Mesh* pyramidMesh = MeshLoader::Load("pyramid.txt");
 	//Mesh* objmesh = MeshLoader::LoadAdvanced("teapot.obj");
