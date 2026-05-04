@@ -25,6 +25,10 @@ void SceneObject::Rotate(GLfloat rotx, GLfloat roty, GLfloat rotz)
 {
 
 }
+void SceneObject::IsSelected()
+{
+
+}
 Vector3 SceneObject::GetPos()
 {
 	return Vector3();

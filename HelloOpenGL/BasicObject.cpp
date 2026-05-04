@@ -25,7 +25,7 @@ void BasicObject::Draw()
 		glBindTexture(GL_TEXTURE_2D, _texture->GetID());
 	}
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_VERTEX_ARRAY); 
 	glEnableClientState(GL_NORMAL_ARRAY);
 	glVertexPointer(3, GL_FLOAT, 0, _mesh->Vertices);
 	glNormalPointer(GL_FLOAT, 0, _mesh->Normals);
@@ -46,15 +46,19 @@ void BasicObject::Draw()
 }
 void BasicObject::Update()
 {
-	//_rotation += 90.0f;
-	_position.x += 0.1f;
+	if (!isselected)
+	{
+		_rotation += 5.0f;
+		rotationx = 1.0f;
+	}
+	//_position.x += 0.5f;
 }
 void BasicObject::Rotate(GLfloat rotx, GLfloat roty, GLfloat rotz)
 {
 	rotationx = rotx;
 	rotationy = roty;
 	rotationz = rotz;
-	_rotation += 90.0f;
+	_rotation += 2.0f;
 }
 Vector3 BasicObject::GetPos()
 {
@@ -70,4 +74,8 @@ void BasicObject::InitMaterials()
 	_material->specular.x = 1.0f; _material->specular.y = 1.0f; _material->specular.z = 1.0f;
 	_material->specular.w = 1.0f;
 	_material->shininess = 100.0f;
+}
+void BasicObject::IsSelected()
+{
+	isselected = !isselected;
 }

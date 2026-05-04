@@ -9,6 +9,7 @@ private:
 	GLfloat rotationx;
 	GLfloat rotationy;
 	GLfloat rotationz;
+	bool isselected;
 
 public:
 	BasicObject(Mesh* mesh, Texture2D* texture, float x, float y, float z);
@@ -17,6 +18,7 @@ public:
 	void Update();
 	void InitMaterials();
 	void Rotate(GLfloat rotx, GLfloat roty, GLfloat rotz);
+	void IsSelected();
 	Vector3 GetPos();
 };
 

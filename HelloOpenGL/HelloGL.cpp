@@ -191,7 +191,9 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 	}
 	if (key == 'j' && objectselectmode == true)
 	{
+		currentobject->IsSelected();
 		currentobject = linkedlist->GetNode(index)->data;
+		currentobject->IsSelected();
 		index++;
 		if (index >= listlength)
 		{
@@ -208,11 +210,14 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 		{
 			index = listlength-1;
 		}
+		currentobject->IsSelected();
 		currentobject = linkedlist->GetNode(index)->data;
+		currentobject->IsSelected();
 	}
 	
 	if (key == 'e')
 	{
+		currentobject->IsSelected();
 		objectselectmode = !objectselectmode;
 		std::cout << objectselectmode;
 	}
