@@ -173,7 +173,7 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 		}
 		if (objectselectmode == true)
 		{
-			currentobject->Rotate(1.0f, 0.0f, 0.0f);
+			currentobject->Rotate(0.1f, 0.0f, 0.0f);
 		}
 		//camera->center.z += 0.1f;
 	}
@@ -188,6 +188,18 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 			camera->center.y = camera->eye.y + front.y;
 			camera->center.z = camera->eye.z + front.z;
 		}
+		if (objectselectmode == true)
+		{
+			currentobject->Rotate(-0.1f, 0.0f, 0.0f);
+		}
+	}
+	if (key == 'a' && objectselectmode == true)
+	{
+		currentobject->Rotate(0.0f, -1.0f, 0.0f);
+	}
+	if (key == 'd' && objectselectmode == true)
+	{
+		currentobject->Rotate(0.0f, 1.0f, 0.0f);
 	}
 	if (key == 'j' && objectselectmode == true)
 	{

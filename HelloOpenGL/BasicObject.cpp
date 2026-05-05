@@ -55,9 +55,10 @@ void BasicObject::Update()
 }
 void BasicObject::Rotate(GLfloat rotx, GLfloat roty, GLfloat rotz)
 {
-	rotationx = rotx;
-	rotationy = roty;
-	rotationz = rotz;
+	rotationx +=  rotx;
+	std::cout << rotationx;
+	rotationy += roty;
+	rotationz += rotz;
 	_rotation += 2.0f;
 }
 Vector3 BasicObject::GetPos()
