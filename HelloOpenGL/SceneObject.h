@@ -12,7 +12,7 @@ public:
 
 	virtual void Update();
 	virtual void Draw();
-	virtual void Rotate(GLfloat rotx, GLfloat roty, GLfloat rotz);
+	virtual void Rotate(GLfloat rotx, GLfloat roty, GLfloat rotz, int direction);
 	virtual void InitMaterials();
 	virtual void IsSelected();
 	virtual Vector3 GetPos();

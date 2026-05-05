@@ -21,7 +21,7 @@ void SceneObject::InitMaterials()
 {
 
 }
-void SceneObject::Rotate(GLfloat rotx, GLfloat roty, GLfloat rotz)
+void SceneObject::Rotate(GLfloat rotx, GLfloat roty, GLfloat rotz,int direction)
 {
 
 }

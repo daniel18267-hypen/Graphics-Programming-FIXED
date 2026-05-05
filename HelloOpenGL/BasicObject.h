@@ -17,7 +17,7 @@ public:
 	void Draw();
 	void Update();
 	void InitMaterials();
-	void Rotate(GLfloat rotx, GLfloat roty, GLfloat rotz);
+	void Rotate(GLfloat rotx, GLfloat roty, GLfloat rotz ,int direction);
 	void IsSelected();
 	Vector3 GetPos();
 };
