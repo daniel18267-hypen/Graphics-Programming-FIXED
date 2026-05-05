@@ -58,6 +58,7 @@ void BasicObject::Rotate(GLfloat rotx, GLfloat roty, GLfloat rotz ,int direction
 	
 	rotationx = rotx;
 	rotationy = roty;
+	
 	rotationz = rotz;
 	std::cout << rotationx << std::endl << rotationy << std::endl << rotationz << std::endl;
 	_rotation += 2.0f * direction;
