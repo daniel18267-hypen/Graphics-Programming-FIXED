@@ -10,15 +10,19 @@
 class Texture2D
 {
 private:
-	GLuint _ID;
-	int _width, _height;
+	GLuint ID;
+	int width, height;
+	int filesize;
+	char* tempheaderdata, * temptexturedata;
+	char type, pixeldepth, mode;
+	bool flipped;
 public:
 	Texture2D();
 	~Texture2D();
-	bool Load(char* path, int width, int height);
+	int Load(const char* path);
 
-	GLuint GetID() const { return _ID; }
-	int GetWidth() const { return _width;  }
-	int GetHeight() const { return _height; }
+	GLuint GetID() const { return ID; }
+	int GetWidth() const { return width;  }
+	int GetHeight() const { return height; }
 };
 

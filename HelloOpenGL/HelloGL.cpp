@@ -67,11 +67,9 @@ void HelloGL::InitObjects()
 	Mesh* cubeMesh = MeshLoader::LoadTextured("cube.txt");
 	Mesh* OBJmesh = MeshLoader::LoadAdvanced("monkey.obj");
 	linkedlist = new LinkedList();
-	 
-	//Mesh* pyramidMesh = MeshLoader::Load("pyramid.txt");
-	//Mesh* objmesh = MeshLoader::LoadAdvanced("teapot.obj");
 	Texture2D* texture = new Texture2D();
-	texture->Load((char*)"Triplet.raw",512,512);
+	
+	texture->Load((char*)"horsetexture.tga");
 	
 	
 	for (int i = 0; i < 3; i++)
@@ -93,14 +91,6 @@ void HelloGL::InitObjects()
 		}
 	}
 
-	//for (int i = 500; i < 1000; i++)
-	//{
-		//sceneobject[i] = new Pyramid(pyramidMesh,texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
-	//}
-	for (int i = 500; i < 1000; i++)
-	{
-		//inkedList::MakeNod = new BasicObject(OBJmesh, texture,((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
-	}
 	camera->eye.x = 5.0f; camera->eye.y = 5.0f; camera->eye.z = -5.0f;
 	camera->center.x = 0.0f; camera->center.y = 0.0f; camera->center.z = 0.0f;
 	camera->up.x = 0.0f; camera->up.y = 1.0f; camera->up.z = 0.0f;

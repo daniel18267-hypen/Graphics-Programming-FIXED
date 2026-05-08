@@ -161,19 +161,6 @@ namespace MeshLoader
 				ss >> mesh.Vertices[vertexindex].z;
 				vertexindex++;
 			}
-			/* if (currentcharacter == 'f')
-			{
-				inFile >> mesh.Indices[faceindex];
-				mesh.Indices[faceindex]--;
-				faceindex++;
-				inFile >> mesh.Indices[faceindex];
-				mesh.Indices[faceindex]--;
-				faceindex++;
-				inFile >> mesh.Indices[faceindex];
-				mesh.Indices[faceindex]--;
-				faceindex++;
-
-			} */
 			
 			
 
@@ -342,7 +329,6 @@ namespace MeshLoader
 		{
 			AdvancedInitArrays(inFile , *mesh);
 			AdvancedLoadVertices(inFile, *mesh);
-			//AdvancedLoadBasicFaces(inFile, *mesh);
 			AdvancedLoadTextFaces(inFile, *mesh);
 			AdvancedLoadTexCoords(inFile, *mesh);
 			

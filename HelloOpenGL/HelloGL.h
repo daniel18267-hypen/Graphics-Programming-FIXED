@@ -11,6 +11,7 @@
 #include "meshloader.h"
 #include "Pyramid.h"
 #include "LinkedList.h"
+#include "TgaLoader.h"
 #define RefreshRate 16
 
 
