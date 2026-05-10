@@ -65,7 +65,7 @@ void HelloGL::InitObjects()
 	firstobject = true;
 	objectselectmode = false;
 	Mesh* cubeMesh = MeshLoader::LoadTextured("cube.txt");
-	Mesh* OBJmesh = MeshLoader::LoadAdvanced("monkey.obj");
+	Mesh* horsemesh = MeshLoader::LoadAdvanced("horse.obj");
 	linkedlist = new LinkedList();
 	Texture2D* texture = new Texture2D();
 	
@@ -76,7 +76,7 @@ void HelloGL::InitObjects()
 	{
 		if (firstobject == true)
 		{
-			sceneobject = new BasicObject(OBJmesh, texture, xpos,ypos,zpos);
+			sceneobject = new BasicObject(horsemesh, texture, xpos,ypos,zpos);
 			linkedlist->head->data = sceneobject;
 			listlength++;
 			xpos += 5;
@@ -84,7 +84,7 @@ void HelloGL::InitObjects()
 		}
 		else
 		{
-			sceneobject = new BasicObject(OBJmesh, texture, xpos, ypos, zpos);
+			sceneobject = new BasicObject(horsemesh, texture, xpos, ypos, zpos);
 			listlength++;
 			linkedlist->MakeNode(&linkedlist->head, sceneobject);
 			xpos += 5;
@@ -109,12 +109,28 @@ void HelloGL::Display()
 		ListNode* node = linkedlist->GetNode(i);
 		node->data->Draw();
 	}
-	for (int i = 500; i < 1000; i++)
+	Vector3 textpos;
+	textpos.x = -14.0f;
+	textpos.y = 10.0f;
+	textpos.z = -1.0f;
+	Color textcolor = { 0.0f, 1.0f, 0.0f };
+	glColor4f(0.0f, 1.0f, 0.0f, 0.0f);
+	std::string currentobjectselected = "Current object selected:" + std::to_string(index);
+	std::string cameramode;
+	HelloGL::DrawString(currentobjectselected.c_str(), &textpos, &textcolor,100.0f,100.0f);
+	if (objectselectmode == true)
 	{
-		// sceneobject[i]->Draw();
-		// std::cerr << "got here";
-		//object[i]->Draw();
+		cameramode = "Camera Mode: object selection mode";
 	}
+	else if (objectselectmode == false)
+	{
+		cameramode = "Camera Mode: free camera";
+	}
+	
+	HelloGL::DrawString(cameramode.c_str(), &textpos, &textcolor, 150.0f, 150.0f);
+	std::string camerapos = "x " + std::to_string(camera->eye.x) + " y " + std::to_string(camera->eye.y) + " z " + std::to_string(camera->eye.z);
+	HelloGL::DrawString (camerapos.c_str(), &textpos, &textcolor, 200.0f, 200.0f);
+	HelloGL::DrawString("E to change camera mode, W, S and Mouse to Move, H and J to change object selected when in object selection mode", &textpos, &textcolor, 250.0f, 250.0f);
 	glFlush();
 	glutSwapBuffers();
 	
@@ -126,6 +142,7 @@ void HelloGL::Update()
 	glLightfv(GL_LIGHT0, GL_SPECULAR, &(_lightdata->specular.x));
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, &(_lightdata->diffuse.x));
 	glLightfv(GL_LIGHT0, GL_POSITION, &(_lightposition->x));
+	
 	if (objectselectmode == false)
 	{
 		gluLookAt(camera->eye.x, camera->eye.y, camera->eye.z, camera->center.x, camera->center.y, camera->center.z, camera->up.x, camera->up.y, camera->up.z);
@@ -135,18 +152,35 @@ void HelloGL::Update()
 		objectpos = currentobject->GetPos();
 		gluLookAt(objectpos.x - offset, objectpos.y - offset, objectpos.z - offset, objectpos.x,objectpos.y,objectpos.z, camera->up.x, camera->up.y, camera->up.z);
 	}
-	//for (int i = ; i < 500; i++)
-	//{
-	//	sceneobject[i]->Update();
-		//object[i]->Update();
-	//}
 	for (int i = 0; i < listlength; i++)
 	{
 		linkedlist->GetNode(i)->data->Update();
 	}
+	
 	glutPostRedisplay();
 }
+void HelloGL::DrawString(const char* text, Vector3* position, Color* color, float rasterposx,float rasterposy)
+{
+	glDisable(GL_DEPTH_TEST);
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	gluOrtho2D(0, 1920, 1080, 0);
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
+	
+	glTranslatef(position->x, position->y, position->z);
+	glRasterPos2f(rasterposx, rasterposy);
+	glutBitmapString(GLUT_BITMAP_TIMES_ROMAN_24, (unsigned char*)(text));
 
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	glEnable(GL_DEPTH_TEST);
+}
 void HelloGL::Keyboard(unsigned char key, int x, int y)
 {
 	

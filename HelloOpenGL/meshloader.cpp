@@ -70,13 +70,18 @@ namespace MeshLoader
 	void AdvancedLoadTextFaces(ifstream& inFile, Mesh& mesh)
 	{
 		int faceindex = 0;
-		int position = 0;
+		int position;
+		int position1;
+		int position2;
 		string line;
 		while (std::getline(inFile, line))
 		{
 			string prefix;
 			string vertex, vertex1, vertex2;
-			GLushort face1, face2, face3;
+			int vertexpos;
+			int texcoordpos;
+			int normalpos;
+			IndexedVertices vertices;
 			stringstream ss(line);
 			
 			ss >> prefix;
@@ -84,23 +89,42 @@ namespace MeshLoader
 			{
 				ss >> vertex >> vertex1 >> vertex2;
 				position = vertex.find('/');
-				face1 = stoi(vertex.substr(0, position));
-				//std::cout << face1 << endl;
-				mesh.Indices[faceindex] = face1;
-				mesh.Indices[faceindex]--;
+				vertexpos = stoi(vertex.substr(0, position));
+				position1 = vertex.find('/', position + 1);
+				texcoordpos = stoi(vertex.substr(position + 1, (position1 - position - 1)));
+				normalpos = stoi(vertex.substr(position1 + 1));
+				vertices.Position = mesh.Vertices[vertexpos - 1];
+				vertices.Normals = mesh.Normals[normalpos - 1];
+				vertices.Texcoords = mesh.Texcoords[texcoordpos - 1];
+				mesh.IndexedVertices[faceindex] = vertices;
+				mesh.Indices[faceindex] = faceindex;
 				faceindex++;
+
 				position = vertex1.find('/');
-				face2 = stoi(vertex1.substr(0, position));
-				//std::cout << face2 << endl;
-				mesh.Indices[faceindex] = face2;
-				mesh.Indices[faceindex]--;
+				vertexpos = stoi(vertex1.substr(0, position));
+				position1 = vertex1.find('/', position + 1);
+				texcoordpos = stoi(vertex1.substr(position + 1, (position1 - position - 1)));;
+				normalpos = stoi(vertex1.substr(position1 + 1));
+				vertices.Position = mesh.Vertices[vertexpos - 1];
+				vertices.Normals = mesh.Normals[normalpos - 1];
+				vertices.Texcoords = mesh.Texcoords[texcoordpos - 1];
+				mesh.IndexedVertices[faceindex] = vertices;
+				mesh.Indices[faceindex] = faceindex;
 				faceindex++;
+
+				
 				position = vertex2.find('/');
-				face3 = stoi(vertex2.substr(0, position));
-				//std::cout << face3 << endl;
-				mesh.Indices[faceindex] = face3;
-				mesh.Indices[faceindex]--;
+				vertexpos = stoi(vertex2.substr(0, position));
+				position1 = vertex2.find('/', position + 1);
+				texcoordpos = stoi(vertex2.substr(position + 1, (position1 - position - 1)));
+				normalpos = stoi(vertex2.substr(position1 + 1));
+				vertices.Position = mesh.Vertices[vertexpos - 1];
+				vertices.Normals = mesh.Normals[normalpos - 1];
+				vertices.Texcoords = mesh.Texcoords[texcoordpos - 1];
+				mesh.IndexedVertices[faceindex] = vertices;
+				mesh.Indices[faceindex] = faceindex;
 				faceindex++;
+
 				
 				
 
@@ -197,6 +221,7 @@ namespace MeshLoader
 			} 
 		}
 		mesh.Vertices = new Vertex[mesh.VertexCount];
+		mesh.IndexedVertices = new IndexedVertices[mesh.IndexCount];
 		mesh.Indices = new GLushort[mesh.IndexCount];
 		mesh.Normals = new Vector3[mesh.NormalCount];
 		mesh.Texcoords = new TexCoord[mesh.TexCoordCount];
@@ -329,10 +354,12 @@ namespace MeshLoader
 		{
 			AdvancedInitArrays(inFile , *mesh);
 			AdvancedLoadVertices(inFile, *mesh);
-			AdvancedLoadTextFaces(inFile, *mesh);
 			AdvancedLoadTexCoords(inFile, *mesh);
-			
 			AdvancedLoadNormals(inFile, *mesh);
+			AdvancedLoadTextFaces(inFile, *mesh);
+			
+			
+			
 			
 			
 			std::cerr << mesh->VertexCount;

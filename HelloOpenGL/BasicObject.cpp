@@ -27,9 +27,9 @@ void BasicObject::Draw()
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	glEnableClientState(GL_VERTEX_ARRAY); 
 	glEnableClientState(GL_NORMAL_ARRAY);
-	glVertexPointer(3, GL_FLOAT, 0, _mesh->Vertices);
-	glNormalPointer(GL_FLOAT, 0, _mesh->Normals);
-	glTexCoordPointer(2, GL_FLOAT, 0, _mesh->Texcoords);
+	glVertexPointer(3, GL_FLOAT, sizeof(IndexedVertices), &_mesh->IndexedVertices[0].Position);
+	glNormalPointer(GL_FLOAT, sizeof(IndexedVertices), &_mesh->IndexedVertices[0].Normals);
+	glTexCoordPointer(2, GL_FLOAT, sizeof(IndexedVertices), &_mesh->IndexedVertices[0].Texcoords);
 	BasicObject::InitMaterials();
 	glMaterialfv(GL_FRONT, GL_AMBIENT, &(_material->ambient.x));
 	glMaterialfv(GL_FRONT, GL_DIFFUSE, &(_material->diffuse.x));
@@ -51,7 +51,6 @@ void BasicObject::Update()
 		_rotation += 5.0f;
 		rotationx = 1.0f;
 	}
-	//_position.x += 0.5f;
 }
 void BasicObject::Rotate(GLfloat rotx, GLfloat roty, GLfloat rotz ,int direction)
 {
@@ -70,7 +69,7 @@ Vector3 BasicObject::GetPos()
 void BasicObject::InitMaterials()
 {
 	_material = new Material();
-	_material->ambient.x = 0.8f; _material->ambient.y = 0.05f; _material->ambient.z = 0.05f;
+	_material->ambient.x = 1.0f; _material->ambient.y = 1.0f; _material->ambient.z = 1.0f;
 	_material->ambient.w = 1.0f;
 	_material->diffuse.x = 0.8f; _material->diffuse.y = 0.05f; _material->diffuse.z = 0.05f;
 	_material->diffuse.w = 1.0f;

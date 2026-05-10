@@ -30,6 +30,7 @@ public:
 		void InitObjects();
 		void InitLighting();
 		void InitGL(int argc, char* argv[]);
+		void DrawString(const char* text, Vector3* position, Color* color, float rasterposx, float rasterposy);
 private:
 	float rotation;
 	int lastx;

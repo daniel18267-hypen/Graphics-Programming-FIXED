@@ -43,14 +43,22 @@ struct TexCoord
 	GLfloat u;
 	GLfloat v;
 };
+struct IndexedVertices
+{
+	Vertex Position;
+	Vector3 Normals;
+	TexCoord Texcoords;
+};
 struct Mesh
 {
 	Vertex* Vertices;
 	Vector3* Normals;
 	GLushort* Indices;
+	IndexedVertices* IndexedVertices;
 	TexCoord* Texcoords;
 	int VertexCount, NormalCount, TexCoordCount, IndexCount;
 };
+
 struct Lighting
 {
 	Vector4 ambient;
