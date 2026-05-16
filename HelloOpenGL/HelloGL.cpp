@@ -64,7 +64,6 @@ void HelloGL::InitObjects()
 	camera = new Camera();
 	firstobject = true;
 	objectselectmode = false;
-	Mesh* cubeMesh = MeshLoader::LoadTextured("cube.txt");
 	Mesh* horsemesh = MeshLoader::LoadAdvanced("horse.obj");
 	linkedlist = new LinkedList();
 	Texture2D* texture = new Texture2D();
@@ -109,30 +108,7 @@ void HelloGL::Display()
 		ListNode* node = linkedlist->GetNode(i);
 		node->data->Draw();
 	}
-	Vector3 textpos;
-	textpos.x = -14.0f;
-	textpos.y = 10.0f;
-	textpos.z = -1.0f;
-	Color textcolor = { 0.0f, 1.0f, 0.0f };
-	glColor4f(0.0f, 1.0f, 0.0f, 0.0f);
-	std::string currentobjectselected = "Current object selected:" + std::to_string(index);
-	std::string cameramode;
-	HelloGL::DrawString(currentobjectselected.c_str(), &textpos, &textcolor,100.0f,100.0f);
-	if (objectselectmode == true)
-	{
-		cameramode = "Camera Mode: object selection mode";
-	}
-	else if (objectselectmode == false)
-	{
-		cameramode = "Camera Mode: free camera";
-	}
-	
-	HelloGL::DrawString(cameramode.c_str(), &textpos, &textcolor, 150.0f, 150.0f);
-	std::string camerapos = "x " + std::to_string(camera->eye.x) + " y " + std::to_string(camera->eye.y) + " z " + std::to_string(camera->eye.z);
-	HelloGL::DrawString (camerapos.c_str(), &textpos, &textcolor, 200.0f, 200.0f);
-	HelloGL::DrawString("E to change camera mode, W, S and Mouse to Move, H and J to change object selected when in object selection mode", &textpos, &textcolor, 250.0f, 250.0f);
-	glFlush();
-	glutSwapBuffers();
+	DrawUI();
 	
 }
 void HelloGL::Update()
@@ -199,7 +175,6 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 		{
 			currentobject->Rotate(1.0f, 0.0f, 0.0f, 1);
 		}
-		//camera->center.z += 0.1f;
 	}
 	if (key == 's')
 	{
@@ -279,15 +254,39 @@ void HelloGL::Mouse(int x, int y)
 	front.x = cos(yawrad) * cos(pitchrad);
 	front.y = sin(pitchrad);
 	front.z = cos(pitchrad) * sin(yawrad);
-	/*float length = sqrt(front.x * front.x + front.y * front.y + front.z * front.z);
-	front.x /= length;
-	front.y /= length;
-	front.z /= length; */
 	camera->center.x = camera->eye.x + front.x;
 	camera->center.y = camera->eye.y + front.y;
 	camera->center.z = camera->eye.z + front.z;
 
 
 	
+}
+
+void HelloGL::DrawUI()
+{
+	Vector3 textpos;
+	textpos.x = -14.0f;
+	textpos.y = 10.0f;
+	textpos.z = -1.0f;
+	Color textcolor = { 0.0f, 1.0f, 0.0f };
+	glColor4f(0.0f, 1.0f, 0.0f, 0.0f);
+	std::string currentobjectselected = "Current object selected:" + std::to_string(index);
+	std::string cameramode;
+	HelloGL::DrawString(currentobjectselected.c_str(), &textpos, &textcolor, 100.0f, 100.0f);
+	if (objectselectmode == true)
+	{
+		cameramode = "Camera Mode: object selection mode";
+	}
+	else if (objectselectmode == false)
+	{
+		cameramode = "Camera Mode: free camera";
+	}
+
+	HelloGL::DrawString(cameramode.c_str(), &textpos, &textcolor, 150.0f, 150.0f);
+	std::string camerapos = "x " + std::to_string(camera->eye.x) + " y " + std::to_string(camera->eye.y) + " z " + std::to_string(camera->eye.z);
+	HelloGL::DrawString(camerapos.c_str(), &textpos, &textcolor, 200.0f, 200.0f);
+	HelloGL::DrawString("E to change camera mode, W, S and Mouse to Move, H and J to change object selected when in object selection mode", &textpos, &textcolor, 250.0f, 250.0f);
+	glFlush();
+	glutSwapBuffers();
 }
 

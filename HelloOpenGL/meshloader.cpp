@@ -8,18 +8,18 @@ using namespace std;
 
 namespace MeshLoader
 {
+	// initialises functions
+	void InitArrays(ifstream& inFile, Mesh& mesh);
 	void LoadVertices(ifstream& inFile, Mesh& mesh);
-	void LoadColours(ifstream& inFile, Mesh& mesh);
-	void LoadIndices(ifstream& inFile, Mesh& mesh);
+	void LoadFaces(ifstream& inFile, Mesh& mesh);
 	void LoadTexCoords(ifstream& inFile, Mesh& mesh);
-	void AdvancedInitArrays(ifstream& inFile, Mesh& mesh);
-	void AdvancedLoadVertices(ifstream& inFile, Mesh& mesh);
-	void AdvancedLoadBasicFaces(ifstream& inFile, Mesh& mesh);
-	void AdvancedLoadTextFaces(ifstream& inFile, Mesh& mesh);
-	void AdvancedLoadTexCoords(ifstream& inFile, Mesh& mesh);
-	void AdvancedLoadNormals(ifstream& inFile, Mesh& mesh);
-
-	void AdvancedLoadTexCoords(ifstream& inFile, Mesh& mesh)
+	void LoadNormals(ifstream& inFile, Mesh& mesh);
+	/// <summary>
+	/// loads texture coordinates.
+	/// </summary>
+	/// <param name="inFile"></param>
+	/// <param name="mesh"></param>
+	void LoadTexCoords(ifstream& inFile, Mesh& mesh)
 	{
 		int texcoordindex = 0;
 		string line;
@@ -46,7 +46,7 @@ namespace MeshLoader
 		inFile.clear();
 		inFile.seekg(0);
 	}
-	void AdvancedLoadNormals(ifstream& inFile, Mesh& mesh)
+	void LoadNormals(ifstream& inFile, Mesh& mesh)
 	{
 		int normalindex = 0;
 		string line;
@@ -67,7 +67,12 @@ namespace MeshLoader
 		inFile.clear();
 		inFile.seekg(0);
 	}
-	void AdvancedLoadTextFaces(ifstream& inFile, Mesh& mesh)
+	/// <summary>
+	/// loads faces and then constructs vertices with the face data.
+	/// </summary>
+	/// <param name="inFile"></param>
+	/// <param name="mesh"></param>
+	void LoadFaces(ifstream& inFile, Mesh& mesh)
 	{
 		int faceindex = 0;
 		int position;
@@ -87,8 +92,11 @@ namespace MeshLoader
 			ss >> prefix;
 			if (prefix == "f")
 			{
+				// reads the three vertexes that make up a face line and stores them in variable
 				ss >> vertex >> vertex1 >> vertex2;
+				// finds the "/" that separates each section of the face data.
 				position = vertex.find('/');
+				// makes a substring of this.
 				vertexpos = stoi(vertex.substr(0, position));
 				position1 = vertex.find('/', position + 1);
 				texcoordpos = stoi(vertex.substr(position + 1, (position1 - position - 1)));
@@ -124,45 +132,18 @@ namespace MeshLoader
 				mesh.IndexedVertices[faceindex] = vertices;
 				mesh.Indices[faceindex] = faceindex;
 				faceindex++;
-
-				
-				
-
 				
 			}
 		}
 		inFile.clear();
 		inFile.seekg(0);
 	}
-	void AdvancedLoadBasicFaces(ifstream& inFile, Mesh& mesh)
-	{
-		int faceindex = 0;
-		string line;
-		while (std::getline(inFile, line))
-		{
-			std::cout << line;
-			string prefix;
-			stringstream ss(line);
-			ss >> prefix;
-			if (prefix == "f")
-			{
-				ss >> mesh.Indices[faceindex];
-				mesh.Indices[faceindex]--;
-				faceindex++;
-				ss >> mesh.Indices[faceindex];
-				mesh.Indices[faceindex]--;
-				faceindex++;
-				ss >> mesh.Indices[faceindex];
-				mesh.Indices[faceindex]--;
-				faceindex++;
-
-			}
-
-		}
-		inFile.clear();
-		inFile.seekg(0);
-	}
-	void AdvancedLoadVertices(ifstream& inFile, Mesh& mesh)
+	/// <summary>
+	/// If first part of string is v, loads the rest of the string into the vertices array.
+	/// </summary>
+	/// <param name="inFile"></param>
+	/// <param name="mesh"></param>
+	void LoadVertices(ifstream& inFile, Mesh& mesh)
 	{
 		int vertexindex = 0;
 		string line;
@@ -173,11 +154,7 @@ namespace MeshLoader
 			string prefix;
 			stringstream ss(line);
 			ss >> prefix;
-			//char currentcharacter;
-			//inFile >> currentcharacter;
-
-
-
+			
 			if (prefix == "v")
 			{
 				ss >> mesh.Vertices[vertexindex].x;
@@ -186,13 +163,16 @@ namespace MeshLoader
 				vertexindex++;
 			}
 			
-			
-
 		}
 		inFile.clear();
 		inFile.seekg(0);
 	}
-	void AdvancedInitArrays(ifstream& inFile, Mesh& mesh)
+	/// <summary>
+	/// loops through the file, adds to the count for respective prefix, intialises array of that size that the data then can go in
+	/// </summary>
+	/// <param name="inFile"></param>
+	/// <param name="mesh"></param>
+	void InitArrays(ifstream& inFile, Mesh& mesh)
 	{	
 		string line;
 		while (std::getline(inFile,line))
@@ -229,111 +209,11 @@ namespace MeshLoader
 		inFile.seekg(0);
 		
 	}
-	void LoadVertices(ifstream& inFile, Mesh& mesh)
-	{
-		inFile >> mesh.VertexCount;
-
-		if (mesh.VertexCount > 0)
-		{
-			mesh.Vertices = new Vertex[mesh.VertexCount];
-
-			for (int i = 0; i < mesh.VertexCount; i++)
-			{
-				inFile >> mesh.Vertices[i].x;
-				inFile >> mesh.Vertices[i].y;
-				inFile >> mesh.Vertices[i].z;
-			}
-		}
-	}
-
-	void LoadNormals(ifstream& inFile, Mesh& mesh)
-	{
-		inFile >> mesh.NormalCount;
-		
-		if (mesh.NormalCount > 0)
-		{
-			mesh.Normals = new Vector3[mesh.NormalCount];
-			for (int i = 0; i < mesh.NormalCount; i++)
-			{
-				inFile >> mesh.Normals[i].x;
-				inFile >> mesh.Normals[i].y;
-				inFile >> mesh.Normals[i].z;
-			}
-		}
-	}
-	void LoadTexCoords(ifstream& inFile, Mesh& mesh)
-	{
-		inFile >> mesh.TexCoordCount;
-		if (mesh.TexCoordCount > 0)
-		{
-			mesh.Texcoords = new TexCoord[mesh.TexCoordCount];
-			for (int i = 0; i < mesh.TexCoordCount; i++)
-			{
-				inFile >> mesh.Texcoords[i].u;
-				inFile >> mesh.Texcoords[i].v;
-			}
-		}
-	}
-
-	void LoadIndices(ifstream& inFile, Mesh& mesh)
-	{
-		inFile >> mesh.IndexCount;
-
-		if (mesh.IndexCount > 0)
-		{
-			mesh.Indices = new GLushort[mesh.IndexCount];
-			for (int i = 0; i < mesh.IndexCount; i++)
-			{
-				inFile >> mesh.Indices[i];
-			}
-		}
-	}
-
-	Mesh* MeshLoader::LoadTextured(const char* path)
-	{
-		Mesh* mesh = new Mesh();
-
-		ifstream inFile;
-
-		inFile.open(path);
-
-		if (!inFile.good())
-		{
-			cerr << "Can't open file" << path << endl;
-			return nullptr;
-		}
-		else
-		{
-			LoadVertices(inFile, *mesh);
-			LoadTexCoords(inFile, *mesh);
-			LoadNormals(inFile, *mesh);
-			LoadIndices(inFile, *mesh);
-		}
-		inFile.close();
-		return mesh;
-	}
-	Mesh* MeshLoader::Load(const char* path)
-	{
-		Mesh* mesh = new Mesh();
-
-		ifstream inFile;
-
-		inFile.open(path);
-
-		if (!inFile.good())
-		{
-			cerr << "Can't open  file " << path << endl;
-			return nullptr;
-		}
-		else
-		{
-			LoadVertices(inFile, *mesh);
-			//LoadColours(inFile, *mesh);
-			LoadIndices(inFile, *mesh);
-		}
-		inFile.close();
-		return mesh;
-	}
+	/// <summary>
+	/// Initialises variables, opens file and calls function to load a standard waverfront .obj file, then closes file and returns mesh.
+	/// </summary>
+	/// <param name="path"></param>
+	/// <returns></returns>
 	Mesh* MeshLoader::LoadAdvanced(const char* path)
 	{
 		Mesh* mesh = new Mesh();
@@ -352,18 +232,11 @@ namespace MeshLoader
 		}
 		else
 		{
-			AdvancedInitArrays(inFile , *mesh);
-			AdvancedLoadVertices(inFile, *mesh);
-			AdvancedLoadTexCoords(inFile, *mesh);
-			AdvancedLoadNormals(inFile, *mesh);
-			AdvancedLoadTextFaces(inFile, *mesh);
-			
-			
-			
-			
-			
-			std::cerr << mesh->VertexCount;
-			std::cerr << mesh->IndexCount;
+			InitArrays(inFile , *mesh);
+			LoadVertices(inFile, *mesh);
+			LoadTexCoords(inFile, *mesh);
+			LoadNormals(inFile, *mesh);
+			LoadFaces(inFile, *mesh);
 			inFile.close();
 			return mesh;
 			

@@ -10,16 +10,12 @@ BasicObject:: ~BasicObject()
 {
 
 }
+/// <summary>
+/// draws the object using gldrawelements, with normals and textures.
+/// </summary>
 void BasicObject::Draw()
 {
-	/*glEnableClientState(GL_VERTEX_ARRAY);
-	glVertexPointer(3, GL_FLOAT, 0, _mesh->Vertices);
-	glPushMatrix();
-	glTranslatef(_position.x, _position.y, _position.z);
-	glDrawElements(GL_TRIANGLES, _mesh->IndexCount, GL_UNSIGNED_SHORT, _mesh->Indices);
-	glPopMatrix();
-	glDisableClientState(GL_VERTEX_ARRAY);
-	*/
+	
 	if (_texture != nullptr)
 	{
 		glBindTexture(GL_TEXTURE_2D, _texture->GetID());
@@ -44,14 +40,25 @@ void BasicObject::Draw()
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 }
+/// <summary>
+/// called every frame
+/// </summary>
 void BasicObject::Update()
 {
+	// rotates if not selected by user
 	if (!isselected)
 	{
 		_rotation += 5.0f;
 		rotationx = 1.0f;
 	}
 }
+/// <summary>
+/// used for user  controlled rotation
+/// </summary>
+/// <param name="rotx"></param>
+/// <param name="roty"></param>
+/// <param name="rotz"></param>
+/// <param name="direction"></param>
 void BasicObject::Rotate(GLfloat rotx, GLfloat roty, GLfloat rotz ,int direction)
 {
 	
@@ -59,13 +66,19 @@ void BasicObject::Rotate(GLfloat rotx, GLfloat roty, GLfloat rotz ,int direction
 	rotationy = roty;
 	
 	rotationz = rotz;
-	std::cout << rotationx << std::endl << rotationy << std::endl << rotationz << std::endl;
 	_rotation += 2.0f * direction;
 }
+/// <summary>
+/// returns position, used for object tracking camera.
+/// </summary>
+/// <returns></returns>
 Vector3 BasicObject::GetPos()
 {
 	return _position;
 }
+/// <summary>
+/// Initialises material for the object using material struct
+/// </summary>
 void BasicObject::InitMaterials()
 {
 	_material = new Material();
@@ -77,6 +90,9 @@ void BasicObject::InitMaterials()
 	_material->specular.w = 1.0f;
 	_material->shininess = 100.0f;
 }
+/// <summary>
+/// Called when material is/isnt selected by user. if selected doesn't rotate on it's own
+/// </summary>
 void BasicObject::IsSelected()
 {
 	isselected = !isselected;
