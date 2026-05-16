@@ -96,18 +96,23 @@ namespace MeshLoader
 				ss >> vertex >> vertex1 >> vertex2;
 				// finds the "/" that separates each section of the face data.
 				position = vertex.find('/');
-				// makes a substring of this.
+				// makes a substring extracting the vertex data, converting to integer and storing it
 				vertexpos = stoi(vertex.substr(0, position));
+				// finds the next "/" after the first one
 				position1 = vertex.find('/', position + 1);
+				// makes two new substrings, one with the texcoord data and one with the normal data and converting to integer and storing it.
 				texcoordpos = stoi(vertex.substr(position + 1, (position1 - position - 1)));
 				normalpos = stoi(vertex.substr(position1 + 1));
+				// we then look up the positions we extracted from face data, use them to get data from the arrays made earlier and store in vertices struct
 				vertices.Position = mesh.Vertices[vertexpos - 1];
 				vertices.Normals = mesh.Normals[normalpos - 1];
 				vertices.Texcoords = mesh.Texcoords[texcoordpos - 1];
+				// then store the vertices in the array
 				mesh.IndexedVertices[faceindex] = vertices;
+				// then store the indices value in indices array and increase it - note this isn't the most optimal way of doing things and could be improved
 				mesh.Indices[faceindex] = faceindex;
 				faceindex++;
-
+				 // we then repeat this 2 times for the next 2 faces on the line.
 				position = vertex1.find('/');
 				vertexpos = stoi(vertex1.substr(0, position));
 				position1 = vertex1.find('/', position + 1);
@@ -135,6 +140,7 @@ namespace MeshLoader
 				
 			}
 		}
+		// clear and go back to 0.
 		inFile.clear();
 		inFile.seekg(0);
 	}
@@ -196,7 +202,6 @@ namespace MeshLoader
 			}
 			else if (prefix == "vt")
 			{
-				std::cout << mesh.TexCoordCount << endl;
 				mesh.TexCoordCount++;
 			} 
 		}

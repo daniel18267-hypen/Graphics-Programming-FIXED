@@ -1,4 +1,6 @@
 #include "SceneObject.h"
+// just a class that other classes inherit from for polymorphism purposes (so can call same functions for all the different classes)
+// however only have one thing that inherits from it, being the basicobject class, didn't need anything else for my simulation.
 SceneObject::SceneObject(Mesh* mesh, Texture2D* texture)
 {
 	_mesh = mesh;

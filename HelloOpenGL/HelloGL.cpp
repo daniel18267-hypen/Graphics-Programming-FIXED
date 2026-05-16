@@ -34,6 +34,9 @@ void HelloGL::InitGL(int argc, char* argv[])
 	glCullFace(GL_BACK);
 	
 }
+/// <summary>
+/// initialises a light at 0,0,0 in the scene.
+/// </summary>
 void HelloGL::InitLighting()
 {
 	_lightposition = new Vector4();
@@ -56,12 +59,16 @@ void HelloGL::InitLighting()
 	_lightdata->specular.z = 0.2;
 	_lightdata->specular.w = 1.0;
 }
+/// <summary>
+/// initalises all objects in the scene, and variables related to those objects.
+/// </summary>
 void HelloGL::InitObjects()
 {
 	yaw = -90.0f;
 	index = 0;
 	offset = 5.0f;
 	camera = new Camera();
+	// this is a varible for linked list, essentially first object is dealt with differently.
 	firstobject = true;
 	objectselectmode = false;
 	Mesh* horsemesh = MeshLoader::LoadAdvanced("horse.obj");
@@ -70,7 +77,7 @@ void HelloGL::InitObjects()
 	
 	texture->Load((char*)"horsetexture.tga");
 	
-	
+	// instantiates objects in world and stores them in linked list. first object is dealt with differently.
 	for (int i = 0; i < 3; i++)
 	{
 		if (firstobject == true)
@@ -89,20 +96,24 @@ void HelloGL::InitObjects()
 			xpos += 5;
 		}
 	}
-
+	// sets up camera positions
 	camera->eye.x = 5.0f; camera->eye.y = 5.0f; camera->eye.z = -5.0f;
 	camera->center.x = 0.0f; camera->center.y = 0.0f; camera->center.z = 0.0f;
 	camera->up.x = 0.0f; camera->up.y = 1.0f; camera->up.z = 0.0f;
+	// sets currentobject to first object , this is what object you can manipulate and look at if in object tracking mode.
 	currentobject = linkedlist->GetNode(0)->data;
 }
+// destructor
 HelloGL::~HelloGL(void)
 {
 	delete camera;
 }
 void HelloGL::Display()
 {
-	glClearColor(1.0,0.0,1.0,0.0);
+	// sets background colour
+	glClearColor(0.0,0.0,1.0,0.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	// traverses linked list and performs draw function on the objects.
 	for (int i = 0; i < 3; i++)
 	{
 		ListNode* node = linkedlist->GetNode(i);

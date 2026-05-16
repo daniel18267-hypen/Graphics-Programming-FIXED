@@ -6,12 +6,9 @@
 #include "GL/freeglut.h" // freeglut library
 #include "GLUTCallbacks.h"
 #include "Structures.h"
-#include "Cube.h"
 #include "BasicObject.h"
 #include "meshloader.h"
-#include "Pyramid.h"
 #include "LinkedList.h"
-#include "TgaLoader.h"
 #define RefreshRate 16
 
 
