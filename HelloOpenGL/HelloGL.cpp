@@ -70,11 +70,14 @@ void HelloGL::InitObjects()
 	camera = new Camera();
 	// this is a varible for linked list, essentially first object is dealt with differently.
 	firstobject = true;
+	// used for determining if object tracking camera should be used or not.
 	objectselectmode = false;
+	// loads in meshes
 	Mesh* horsemesh = MeshLoader::LoadAdvanced("horse.obj");
+	// initiating linked list class and texture2d classes
 	linkedlist = new LinkedList();
 	Texture2D* texture = new Texture2D();
-	
+	// loading in textures
 	texture->Load((char*)"horsetexture.tga");
 	
 	// instantiates objects in world and stores them in linked list. first object is dealt with differently.
@@ -85,11 +88,13 @@ void HelloGL::InitObjects()
 			sceneobject = new BasicObject(horsemesh, texture, xpos,ypos,zpos);
 			linkedlist->head->data = sceneobject;
 			listlength++;
+			// increases x position by 5 after instantiating object, so they are seperate
 			xpos += 5;
 			firstobject = false;
 		}
 		else
 		{
+			// same as before but not first object so doesn't make them head of linked list.
 			sceneobject = new BasicObject(horsemesh, texture, xpos, ypos, zpos);
 			listlength++;
 			linkedlist->MakeNode(&linkedlist->head, sceneobject);
@@ -119,17 +124,23 @@ void HelloGL::Display()
 		ListNode* node = linkedlist->GetNode(i);
 		node->data->Draw();
 	}
+	// draws the HUD
 	DrawUI();
 	
 }
+/// <summary>
+/// called 60 times a second, updates objects, lighting, camera.
+/// </summary>
 void HelloGL::Update()
 {
+	// calls load identity so matrix is reset.
 	glLoadIdentity();
+	// updates lighting
 	glLightfv(GL_LIGHT0, GL_AMBIENT, &(_lightdata->ambient.x));
 	glLightfv(GL_LIGHT0, GL_SPECULAR, &(_lightdata->specular.x));
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, &(_lightdata->diffuse.x));
 	glLightfv(GL_LIGHT0, GL_POSITION, &(_lightposition->x));
-	
+	// if not in object select mode, normal camera, if you are it looks at the object you have selected
 	if (objectselectmode == false)
 	{
 		gluLookAt(camera->eye.x, camera->eye.y, camera->eye.z, camera->center.x, camera->center.y, camera->center.z, camera->up.x, camera->up.y, camera->up.z);
@@ -139,13 +150,22 @@ void HelloGL::Update()
 		objectpos = currentobject->GetPos();
 		gluLookAt(objectpos.x - offset, objectpos.y - offset, objectpos.z - offset, objectpos.x,objectpos.y,objectpos.z, camera->up.x, camera->up.y, camera->up.z);
 	}
+	// loops through linked list, updating things.
 	for (int i = 0; i < listlength; i++)
 	{
 		linkedlist->GetNode(i)->data->Update();
 	}
-	
+	// redraws scene
 	glutPostRedisplay();
 }
+/// <summary>
+/// called from DrawUI() draws string on screen.
+/// </summary>
+/// <param name="text"></param>
+/// <param name="position"></param>
+/// <param name="color"></param>
+/// <param name="rasterposx"></param>
+/// <param name="rasterposy"></param>
 void HelloGL::DrawString(const char* text, Vector3* position, Color* color, float rasterposx,float rasterposy)
 {
 	glDisable(GL_DEPTH_TEST);
