@@ -158,41 +158,19 @@ void HelloGL::Update()
 	// redraws scene
 	glutPostRedisplay();
 }
-/// <summary>
-/// called from DrawUI() draws string on screen.
-/// </summary>
-/// <param name="text"></param>
-/// <param name="position"></param>
-/// <param name="color"></param>
-/// <param name="rasterposx"></param>
-/// <param name="rasterposy"></param>
-void HelloGL::DrawString(const char* text, Vector3* position, Color* color, float rasterposx,float rasterposy)
-{
-	glDisable(GL_DEPTH_TEST);
-	glMatrixMode(GL_PROJECTION);
-	glPushMatrix();
-	glLoadIdentity();
-	gluOrtho2D(0, 1920, 1080, 0);
-	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
-	glLoadIdentity();
-	
-	glTranslatef(position->x, position->y, position->z);
-	glRasterPos2f(rasterposx, rasterposy);
-	glutBitmapString(GLUT_BITMAP_TIMES_ROMAN_24, (unsigned char*)(text));
 
-	glMatrixMode(GL_PROJECTION);
-	glPopMatrix();
-	glMatrixMode(GL_MODELVIEW);
-	glPopMatrix();
-	glMatrixMode(GL_MODELVIEW);
-	glEnable(GL_DEPTH_TEST);
-}
+/// <summary>
+/// Detects keyboard inputs and does things accordingly
+/// </summary>
+/// <param name="key"></param>
+/// <param name="x"></param>
+/// <param name="y"></param>
 void HelloGL::Keyboard(unsigned char key, int x, int y)
 {
 	
 	if (key == 'w')
 	{
+		// if not in object select mode, move camera forward.
 		if (objectselectmode == false)
 		{
 			camera->eye.x += 0.5f * front.x;
@@ -202,6 +180,7 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 			camera->center.y = camera->eye.y + front.y;
 			camera->center.z = camera->eye.z + front.z;
 		}
+		// if in object select mode, rotates the object forwards on the x axis.
 		if (objectselectmode == true)
 		{
 			currentobject->Rotate(1.0f, 0.0f, 0.0f, 1);
@@ -209,6 +188,7 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 	}
 	if (key == 's')
 	{
+		// if not in object select mode, move camera backwards
 		if (objectselectmode == false)
 		{
 			camera->eye.x -= 0.5f * front.x;
@@ -218,15 +198,18 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 			camera->center.y = camera->eye.y + front.y;
 			camera->center.z = camera->eye.z + front.z;
 		}
+		// if in object select mode, rotates the object backwards on the x axis.
 		if (objectselectmode == true)
 		{
 			currentobject->Rotate(1.0f, 0.0f, 0.0f, -1);
 		}
 	}
+	// if in object select mode and a is pressed, rotate the object backwards on the y axis.
 	if (key == 'a' && objectselectmode == true)
 	{
 		currentobject->Rotate(0.0f, 1.0f, 0.0f, -1);
 	}
+	// if in object select mode and d is pressed, rotate the object forward on the y axis.
 	if (key == 'd' && objectselectmode == true)
 	{
 		currentobject->Rotate(0.0f, 1.0f, 0.0f, 1);
@@ -295,6 +278,7 @@ void HelloGL::Mouse(int x, int y)
 
 void HelloGL::DrawUI()
 {
+	
 	Vector3 textpos;
 	textpos.x = -14.0f;
 	textpos.y = 10.0f;
@@ -312,12 +296,45 @@ void HelloGL::DrawUI()
 	{
 		cameramode = "Camera Mode: free camera";
 	}
-
+	
 	HelloGL::DrawString(cameramode.c_str(), &textpos, &textcolor, 150.0f, 150.0f);
 	std::string camerapos = "x " + std::to_string(camera->eye.x) + " y " + std::to_string(camera->eye.y) + " z " + std::to_string(camera->eye.z);
 	HelloGL::DrawString(camerapos.c_str(), &textpos, &textcolor, 200.0f, 200.0f);
 	HelloGL::DrawString("E to change camera mode, W, S and Mouse to Move, H and J to change object selected when in object selection mode", &textpos, &textcolor, 250.0f, 250.0f);
 	glFlush();
 	glutSwapBuffers();
+}
+/// <summary>
+/// called from DrawUI() draws string on screen.
+/// </summary>
+/// <param name="text"></param>
+/// <param name="position"></param>
+/// <param name="color"></param>
+/// <param name="rasterposx"></param>
+/// <param name="rasterposy"></param>
+void HelloGL::DrawString(const char* text, Vector3* position, Color* color, float rasterposx, float rasterposy)
+{
+	glDisable(GL_DEPTH_TEST);
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	gluOrtho2D(0, 1920, 1080, 0);
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
+
+	glTranslatef(position->x, position->y, position->z);
+	glRasterPos2f(rasterposx, rasterposy);
+	glutBitmapString(GLUT_BITMAP_TIMES_ROMAN_24, (unsigned char*)(text));
+
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	glEnable(GL_DEPTH_TEST);
+	
+
+	
 }
 
