@@ -97,3 +97,7 @@ void BasicObject::IsSelected()
 {
 	isselected = !isselected;
 }
+void BasicObject::ChangeTexture(Texture2D* texture)
+{
+	_texture = texture;
+}

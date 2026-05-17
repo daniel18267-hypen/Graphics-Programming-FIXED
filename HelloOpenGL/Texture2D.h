@@ -12,15 +12,14 @@ class Texture2D
 private:
 	GLuint ID;
 	int width, height;
+	bool flipped;
 	int filesize;
 	char* tempheaderdata, * temptexturedata;
 	char type, pixeldepth, mode;
-	bool flipped;
 public:
 	Texture2D();
 	~Texture2D();
 	int Load(const char* path);
-
 	GLuint GetID() const { return ID; }
 	int GetWidth() const { return width;  }
 	int GetHeight() const { return height; }

@@ -1,16 +1,24 @@
-﻿  HelloGL.cpp
-C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(63,27): warning C4305: '=': truncation from 'double' to 'float'
+﻿  BasicObject.cpp
+  GLUTCallbacks.cpp
+  HelloGL.cpp
 C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(64,27): warning C4305: '=': truncation from 'double' to 'float'
 C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(65,27): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(73,8): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(66,27): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(74,8): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(94,64): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(94,59): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(94,54): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(104,66): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(104,60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(104,54): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(280,15): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(281,17): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(285,11): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(289,11): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(106,66): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(106,60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(106,54): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(282,15): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(283,17): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(287,11): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(291,11): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  LinkedList.cpp
+  SceneObject.cpp
+  Texture2D.cpp
+C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\Texture2D.cpp(49,65): warning C4390: ';': empty controlled statement found; is this the intent?
+  main.cpp
+  Generating Code...
   HelloOpenGL.vcxproj -> C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\Debug\HelloOpenGL.exe

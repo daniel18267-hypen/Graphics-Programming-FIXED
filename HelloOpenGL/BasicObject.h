@@ -16,6 +16,7 @@ public:
 	~BasicObject();
 	void Draw();
 	void Update();
+	void ChangeTexture(Texture2D* texture);
 	void InitMaterials();
 	void Rotate(GLfloat rotx, GLfloat roty, GLfloat rotz ,int direction);
 	void IsSelected();

@@ -11,6 +11,7 @@ public:
 	virtual ~SceneObject();
 
 	virtual void Update();
+	virtual void ChangeTexture(Texture2D* texture);
 	virtual void Draw();
 	virtual void Rotate(GLfloat rotx, GLfloat roty, GLfloat rotz, int direction);
 	virtual void InitMaterials();

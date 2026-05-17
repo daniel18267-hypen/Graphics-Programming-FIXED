@@ -36,6 +36,8 @@ void HelloGL::InitGL(int argc, char* argv[])
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
+	// enables anti aliasing.
+	glEnable(GL_LINE_SMOOTH);
 	glCullFace(GL_BACK);
 	glutSetCursor(GLUT_CURSOR_NONE);
 	
@@ -85,14 +87,15 @@ void HelloGL::InitObjects()
 	Texture2D* texture = new Texture2D();
 	// loading in textures
 	texture->Load((char*)"horsetexture.tga");
-	
 	// instantiates objects in world and stores them in linked list. first object is dealt with differently.
 	for (int i = 0; i < 3; i++)
 	{
 		if (firstobject == true)
 		{
 			sceneobject = new BasicObject(horsemesh, texture, xpos,ypos,zpos);
+			// linked lists head is already made, so if first object sets the heads data to be the sceneobject 
 			linkedlist->head->data = sceneobject;
+			// list length is used so when updating sceneobjects index doesn't go out of bounds.
 			listlength++;
 			// increases x position by 5 after instantiating object, so they are seperate
 			xpos += 5;
@@ -100,7 +103,7 @@ void HelloGL::InitObjects()
 		}
 		else
 		{
-			// same as before but not first object so doesn't make them head of linked list.
+			// same as before but not first object so doesn't make them head of linked list, just makes new head instead.
 			sceneobject = new BasicObject(horsemesh, texture, xpos, ypos, zpos);
 			listlength++;
 			linkedlist->MakeNode(&linkedlist->head, sceneobject);
@@ -125,7 +128,7 @@ void HelloGL::Display()
 	glClearColor(0.0,0.0,1.0,0.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	// traverses linked list and performs draw function on the objects.
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < listlength; i++)
 	{
 		ListNode* node = linkedlist->GetNode(i);
 		node->data->Draw();

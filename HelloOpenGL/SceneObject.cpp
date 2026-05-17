@@ -31,6 +31,10 @@ void SceneObject::IsSelected()
 {
 
 }
+void SceneObject::ChangeTexture(Texture2D* texture)
+{
+
+}
 Vector3 SceneObject::GetPos()
 {
 	return Vector3();
