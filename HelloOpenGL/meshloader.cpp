@@ -15,7 +15,7 @@ namespace MeshLoader
 	void LoadTexCoords(ifstream& inFile, Mesh& mesh);
 	void LoadNormals(ifstream& inFile, Mesh& mesh);
 	/// <summary>
-	/// loads texture coordinates.
+	/// loads texture coordinates into array, detects prefix of each line to determine this.
 	/// </summary>
 	/// <param name="inFile"></param>
 	/// <param name="mesh"></param>
@@ -30,11 +30,6 @@ namespace MeshLoader
 			string prefix;
 			stringstream ss(line);
 			ss >> prefix;
-			//char currentcharacter;
-			//inFile >> currentcharacter;
-
-
-
 			if (prefix == "vt")
 			{
 				ss >> mesh.Texcoords[texcoordindex].u;
@@ -46,6 +41,11 @@ namespace MeshLoader
 		inFile.clear();
 		inFile.seekg(0);
 	}
+	/// <summary>
+	/// loads normals, gets prefix of each line to determine if they contain normals.
+	/// </summary>
+	/// <param name="inFile"></param>
+	/// <param name="mesh"></param>
 	void LoadNormals(ifstream& inFile, Mesh& mesh)
 	{
 		int normalindex = 0;
@@ -145,7 +145,7 @@ namespace MeshLoader
 		inFile.seekg(0);
 	}
 	/// <summary>
-	/// If first part of string is v, loads the rest of the string into the vertices array.
+	/// loads vertices by detecting start of string and loading it into array.
 	/// </summary>
 	/// <param name="inFile"></param>
 	/// <param name="mesh"></param>

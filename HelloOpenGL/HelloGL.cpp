@@ -9,6 +9,11 @@ HelloGL::HelloGL(int argc, char* argv[])
 	glutMainLoop();
 		
 }
+/// <summary>
+/// initialises window, enables everything that needs enabling, starts glutcallbacks.
+/// </summary>
+/// <param name="argc"></param>
+/// <param name="argv"></param>
 void HelloGL::InitGL(int argc, char* argv[])
 {
 	GLUTCallbacks::Init(this);
@@ -32,6 +37,7 @@ void HelloGL::InitGL(int argc, char* argv[])
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 	glCullFace(GL_BACK);
+	glutSetCursor(GLUT_CURSOR_NONE);
 	
 }
 /// <summary>
@@ -214,32 +220,37 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 	{
 		currentobject->Rotate(0.0f, 1.0f, 0.0f, 1);
 	}
+	// cycles through objects on screen by using linked list, and sets it as currentobject and stops any non - player controlled animation on them, to allow user to manipulate.
 	if (key == 'j' && objectselectmode == true)
 	{
-		currentobject->IsSelected();
-		currentobject = linkedlist->GetNode(index)->data;
-		currentobject->IsSelected();
+		
 		index++;
 		if (index >= listlength)
 		{
 			index = 0;
 		}
 		
+		currentobject->IsSelected();
+		currentobject = linkedlist->GetNode(index)->data;
+		currentobject->IsSelected();
+		
 	}
+	// does same as above - but in opposite direction.
 	if (key == 'h' && objectselectmode == true)
 	{
+		
+		
 		index--;
-		
-		
 		if (index < 0)
 		{
 			index = listlength-1;
 		}
+		
 		currentobject->IsSelected();
 		currentobject = linkedlist->GetNode(index)->data;
 		currentobject->IsSelected();
 	}
-	
+	// turns object select mode on / off.
 	if (key == 'e')
 	{
 		currentobject->IsSelected();
@@ -250,44 +261,64 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 	
 	
 }
+/// <summary>
+/// used for mouse camera movement, takes in the x and y values.
+/// </summary>
+/// <param name="x"></param>
+/// <param name="y"></param>
 void HelloGL::Mouse(int x, int y)
 {
-	int xdiff = x - lastx;
-	int ydiff = y - lasty;
-	float sensitivity = 1;
+	// gets difference between previous x and y values and current x and y values.
+	 xdiff = x - lastx;
+	 ydiff = y - lasty;
+	 // sets sensitivity
+	 sensitivity = 0.25;
+	 // sets lastx + lasty now they're not used for this loop anymore
 	lastx = x;
 	lasty = y;
+	// sets yaw and pitch to be the difference multipled by sensitivity (multiplied by 2 for pitch as it felt better)
 	yaw += xdiff * sensitivity;
 	pitch += ydiff * (sensitivity * 2);
+	// clams pitch
 	if (pitch > 90.0f)
 	{
 		pitch = 90.0f;
 	}
-	float yawrad = (yaw * (3.14f / 180));
-	float pitchrad = (pitch * (3.14f / 180));
+	if (pitch < -90.0f)
+	{
+		pitch = -90.0f;
+	}
+	// converts yaw and pitch to radians
+	 yawrad = (yaw * (3.14f / 180));
+	 pitchrad = (pitch * (3.14f / 180));
+	 // front is a vector 3, converts the pitch and yaw into where mouse should be looking at.
 	front.x = cos(yawrad) * cos(pitchrad);
 	front.y = sin(pitchrad);
 	front.z = cos(pitchrad) * sin(yawrad);
+	// moves camera to be looking in direction mouse has moved.
 	camera->center.x = camera->eye.x + front.x;
 	camera->center.y = camera->eye.y + front.y;
 	camera->center.z = camera->eye.z + front.z;
-
-
+	// if cursor gets near screen edge, set it to screen centre.
+	if (x < 100 || 1920 - 100 < x)
+	{
+		glutWarpPointer(960, 540);
+	}
+	if (y < 100 || 1080 - 100 < y)
+	{
+		glutWarpPointer(960, 540);
+	}
 	
 }
 
 void HelloGL::DrawUI()
 {
-	
-	Vector3 textpos;
-	textpos.x = -14.0f;
-	textpos.y = 10.0f;
-	textpos.z = -1.0f;
-	Color textcolor = { 0.0f, 1.0f, 0.0f };
-	glColor4f(0.0f, 1.0f, 0.0f, 0.0f);
-	std::string currentobjectselected = "Current object selected:" + std::to_string(index);
-	std::string cameramode;
-	HelloGL::DrawString(currentobjectselected.c_str(), &textpos, &textcolor, 100.0f, 100.0f);
+	// sets the text position
+	// sets string, as this string changes depending on object change
+	currentobjectselected = "Current object selected:" + std::to_string(index);
+	// draws string, converts string to an array of characters first.
+	HelloGL::DrawString(currentobjectselected.c_str(),   100.0f, 100.0f);
+	// changes string based on current camera mode
 	if (objectselectmode == true)
 	{
 		cameramode = "Camera Mode: object selection mode";
@@ -296,11 +327,13 @@ void HelloGL::DrawUI()
 	{
 		cameramode = "Camera Mode: free camera";
 	}
-	
-	HelloGL::DrawString(cameramode.c_str(), &textpos, &textcolor, 150.0f, 150.0f);
-	std::string camerapos = "x " + std::to_string(camera->eye.x) + " y " + std::to_string(camera->eye.y) + " z " + std::to_string(camera->eye.z);
-	HelloGL::DrawString(camerapos.c_str(), &textpos, &textcolor, 200.0f, 200.0f);
-	HelloGL::DrawString("E to change camera mode, W, S and Mouse to Move, H and J to change object selected when in object selection mode", &textpos, &textcolor, 250.0f, 250.0f);
+	// draws that stromg
+	HelloGL::DrawString(cameramode.c_str(),   150.0f, 150.0f);
+	// sets string by getting position of camera.
+	 camerapos = "x " + std::to_string(camera->eye.x) + " y " + std::to_string(camera->eye.y) + " z " + std::to_string(camera->eye.z);
+	 // draws that string, and string with control instructions.
+	HelloGL::DrawString(camerapos.c_str(),   200.0f, 200.0f);
+	HelloGL::DrawString("E to change camera mode, W, S and Mouse to Move, H and J to change object selected when in object selection mode",   250.0f, 250.0f);
 	glFlush();
 	glutSwapBuffers();
 }
@@ -312,21 +345,23 @@ void HelloGL::DrawUI()
 /// <param name="color"></param>
 /// <param name="rasterposx"></param>
 /// <param name="rasterposy"></param>
-void HelloGL::DrawString(const char* text, Vector3* position, Color* color, float rasterposx, float rasterposy)
+void HelloGL::DrawString(const char* text,   float rasterposx, float rasterposy)
 {
+	// disables depth testing so text doesn't render behind objects.
 	glDisable(GL_DEPTH_TEST);
+	// resets  both matrices 
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
 	glLoadIdentity();
+	// goes into orthographic mode, rendering on the "hud" essentially
 	gluOrtho2D(0, 1920, 1080, 0);
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 	glLoadIdentity();
-
-	glTranslatef(position->x, position->y, position->z);
 	glRasterPos2f(rasterposx, rasterposy);
+	// draws string
 	glutBitmapString(GLUT_BITMAP_TIMES_ROMAN_24, (unsigned char*)(text));
-
+	// pops matrices off stack and enables depth testing again.
 	glMatrixMode(GL_PROJECTION);
 	glPopMatrix();
 	glMatrixMode(GL_MODELVIEW);

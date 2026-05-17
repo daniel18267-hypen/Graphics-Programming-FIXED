@@ -28,12 +28,17 @@ public:
 		void InitLighting();
 		void InitGL(int argc, char* argv[]);
 		void DrawUI();
-		void DrawString(const char* text, Vector3* position, Color* color, float rasterposx, float rasterposy);
+		void DrawString(const char* text,  float rasterposx, float rasterposy);
 private:
 	float rotation;
 	int lastx;
-	bool objectselectmode;
 	int lasty;
+	int xdiff;
+	int ydiff;
+	float sensitivity;
+	float yawrad;
+	float pitchrad;
+	bool objectselectmode;
 	int index;
 	int listlength;
 	int yaw;
@@ -41,6 +46,9 @@ private:
 	int pitch;
 	int xpos, ypos, zpos;
 	bool firstobject;
+	std::string camerapos;
+	std::string cameramode;
+	std::string currentobjectselected;
 	Vector3 objectpos;
 	Vector3 front;
 	Camera* camera;
