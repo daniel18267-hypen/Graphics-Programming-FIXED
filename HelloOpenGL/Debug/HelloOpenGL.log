@@ -1,24 +1,19 @@
-﻿  BasicObject.cpp
-  GLUTCallbacks.cpp
+﻿  GLUTCallbacks.cpp
   HelloGL.cpp
-C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(64,27): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(65,27): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(66,27): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(74,8): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(94,64): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(94,59): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(94,54): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(106,66): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(106,60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(106,54): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(282,15): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(283,17): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(287,11): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(291,11): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  LinkedList.cpp
-  SceneObject.cpp
-  Texture2D.cpp
-C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\HelloOpenGL\Texture2D.cpp(49,65): warning C4390: ';': empty controlled statement found; is this the intent?
+C:\Users\danie\Documents\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(63,27): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\danie\Documents\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(64,27): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\danie\Documents\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(65,27): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\danie\Documents\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(73,8): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\danie\Documents\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(96,69): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\danie\Documents\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(96,64): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\danie\Documents\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(96,59): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\danie\Documents\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(108,67): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\danie\Documents\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(108,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\danie\Documents\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(108,55): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\danie\Documents\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(292,15): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\Users\danie\Documents\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(293,17): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\Users\danie\Documents\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(297,11): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\danie\Documents\Graphics-Programming-FIXED\HelloOpenGL\HelloGL.cpp(301,11): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   main.cpp
   Generating Code...
-  HelloOpenGL.vcxproj -> C:\Users\s012336p\Documents\GitHub\Graphics-Programming-FIXED\Debug\HelloOpenGL.exe
+  HelloOpenGL.vcxproj -> C:\Users\danie\Documents\Graphics-Programming-FIXED\Debug\HelloOpenGL.exe

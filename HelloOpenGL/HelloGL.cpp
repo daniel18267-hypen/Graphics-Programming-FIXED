@@ -32,15 +32,13 @@ void HelloGL::InitGL(int argc, char* argv[])
 	gluPerspective(45, 1, 1, 1000);
 	glMatrixMode(GL_MODELVIEW);
 	glEnable(GL_TEXTURE_2D);
-	glEnable(GL_CULL_FACE);
+	//glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
-	// enables anti aliasing.
+	// enables anti aliasing on sceneobjects
 	glEnable(GL_LINE_SMOOTH);
 	glCullFace(GL_BACK);
-	glutSetCursor(GLUT_CURSOR_NONE);
-	
 }
 /// <summary>
 /// initialises a light at 0,0,0 in the scene.
@@ -82,17 +80,20 @@ void HelloGL::InitObjects()
 	objectselectmode = false;
 	// loads in meshes
 	Mesh* horsemesh = MeshLoader::LoadAdvanced("horse.obj");
+	Mesh* catmesh = MeshLoader::LoadAdvanced("cat.obj");
 	// initiating linked list class and texture2d classes
 	linkedlist = new LinkedList();
-	Texture2D* texture = new Texture2D();
+	 cattexture = new Texture2D();
+	 horsetexture = new Texture2D();
 	// loading in textures
-	texture->Load((char*)"horsetexture.tga");
+	horsetexture->Load((char*)"horsetexture.tga");
+	cattexture->Load((char*)"cattexture.tga");
 	// instantiates objects in world and stores them in linked list. first object is dealt with differently.
 	for (int i = 0; i < 3; i++)
 	{
 		if (firstobject == true)
 		{
-			sceneobject = new BasicObject(horsemesh, texture, xpos,ypos,zpos);
+			sceneobject = new BasicObject(horsemesh, horsetexture, xpos,ypos,zpos);
 			// linked lists head is already made, so if first object sets the heads data to be the sceneobject 
 			linkedlist->head->data = sceneobject;
 			// list length is used so when updating sceneobjects index doesn't go out of bounds.
@@ -104,7 +105,7 @@ void HelloGL::InitObjects()
 		else
 		{
 			// same as before but not first object so doesn't make them head of linked list, just makes new head instead.
-			sceneobject = new BasicObject(horsemesh, texture, xpos, ypos, zpos);
+			sceneobject = new BasicObject(catmesh, cattexture, xpos, ypos, zpos);
 			listlength++;
 			linkedlist->MakeNode(&linkedlist->head, sceneobject);
 			xpos += 5;
@@ -260,6 +261,14 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 		objectselectmode = !objectselectmode;
 		std::cout << objectselectmode;
 	}
+	if (key == 'r' && objectselectmode == true)
+	{
+		currentobject->ChangeTexture(cattexture);
+	}
+	if (key == 't' && objectselectmode == true)
+	{
+		currentobject->ChangeTexture(horsetexture);
+	}
 
 	
 	
@@ -275,7 +284,7 @@ void HelloGL::Mouse(int x, int y)
 	 xdiff = x - lastx;
 	 ydiff = y - lasty;
 	 // sets sensitivity
-	 sensitivity = 0.25;
+	 sensitivity = 1;
 	 // sets lastx + lasty now they're not used for this loop anymore
 	lastx = x;
 	lasty = y;
@@ -302,15 +311,6 @@ void HelloGL::Mouse(int x, int y)
 	camera->center.x = camera->eye.x + front.x;
 	camera->center.y = camera->eye.y + front.y;
 	camera->center.z = camera->eye.z + front.z;
-	// if cursor gets near screen edge, set it to screen centre.
-	if (x < 100 || 1920 - 100 < x)
-	{
-		glutWarpPointer(960, 540);
-	}
-	if (y < 100 || 1080 - 100 < y)
-	{
-		glutWarpPointer(960, 540);
-	}
 	
 }
 

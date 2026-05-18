@@ -23,10 +23,8 @@ namespace MeshLoader
 	{
 		int texcoordindex = 0;
 		string line;
-
 		while (std::getline(inFile, line))
 		{
-
 			string prefix;
 			stringstream ss(line);
 			ss >> prefix;
@@ -61,7 +59,6 @@ namespace MeshLoader
 				ss >> mesh.Normals[normalindex].y;
 				ss >> mesh.Normals[normalindex].z;
 				normalindex++;
-
 			}
 		}
 		inFile.clear();
@@ -137,7 +134,6 @@ namespace MeshLoader
 				mesh.IndexedVertices[faceindex] = vertices;
 				mesh.Indices[faceindex] = faceindex;
 				faceindex++;
-				
 			}
 		}
 		// clear and go back to 0.
@@ -156,11 +152,9 @@ namespace MeshLoader
 		
 		while (std::getline(inFile,line))
 		{
-			
 			string prefix;
 			stringstream ss(line);
 			ss >> prefix;
-			
 			if (prefix == "v")
 			{
 				ss >> mesh.Vertices[vertexindex].x;
@@ -168,7 +162,6 @@ namespace MeshLoader
 				ss >> mesh.Vertices[vertexindex].z;
 				vertexindex++;
 			}
-			
 		}
 		inFile.clear();
 		inFile.seekg(0);
@@ -207,12 +200,11 @@ namespace MeshLoader
 		}
 		mesh.Vertices = new Vertex[mesh.VertexCount];
 		mesh.IndexedVertices = new IndexedVertices[mesh.IndexCount];
-		mesh.Indices = new GLushort[mesh.IndexCount];
+		mesh.Indices = new GLuint[mesh.IndexCount];
 		mesh.Normals = new Vector3[mesh.NormalCount];
 		mesh.Texcoords = new TexCoord[mesh.TexCoordCount];
 		inFile.clear();
 		inFile.seekg(0);
-		
 	}
 	/// <summary>
 	/// Initialises variables, opens file and calls function to load a standard waverfront .obj file, then closes file and returns mesh.

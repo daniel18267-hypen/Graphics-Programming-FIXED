@@ -53,7 +53,7 @@ struct Mesh
 {
 	Vertex* Vertices;
 	Vector3* Normals;
-	GLushort* Indices;
+	GLuint* Indices;
 	IndexedVertices* IndexedVertices;
 	TexCoord* Texcoords;
 	int VertexCount, NormalCount, TexCoordCount, IndexCount;

@@ -34,7 +34,7 @@ void BasicObject::Draw()
 	glPushMatrix();
 	glTranslatef(_position.x, _position.y, _position.z);
 	glRotatef(_rotation, rotationx,rotationy,rotationz);
-	glDrawElements(GL_TRIANGLES, _mesh->IndexCount, GL_UNSIGNED_SHORT, _mesh->Indices);
+	glDrawElements(GL_TRIANGLES, _mesh->IndexCount, GL_UNSIGNED_INT, _mesh->Indices);
 	glPopMatrix();
 	glDisableClientState(GL_NORMAL_ARRAY);
 	glDisableClientState(GL_VERTEX_ARRAY);
