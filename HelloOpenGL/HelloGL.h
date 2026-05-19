@@ -30,7 +30,7 @@ public:
 		void DrawUI();
 		void DrawString(const char* text,  float rasterposx, float rasterposy);
 private:
-	Texture2D* cattexture;
+	Texture2D* dogtexture;
 	Texture2D* horsetexture;
 	float rotation;
 	int lastx;

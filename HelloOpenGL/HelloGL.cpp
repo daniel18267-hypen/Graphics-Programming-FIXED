@@ -80,16 +80,16 @@ void HelloGL::InitObjects()
 	objectselectmode = false;
 	// loads in meshes
 	Mesh* horsemesh = MeshLoader::LoadAdvanced("horse.obj");
-	Mesh* catmesh = MeshLoader::LoadAdvanced("cat.obj");
+	Mesh* dogmesh = MeshLoader::LoadAdvanced("dog.obj");
 	// initiating linked list class and texture2d classes
 	linkedlist = new LinkedList();
-	 cattexture = new Texture2D();
+	 dogtexture = new Texture2D();
 	 horsetexture = new Texture2D();
 	// loading in textures
 	horsetexture->Load((char*)"horsetexture.tga");
-	cattexture->Load((char*)"cattexture.tga");
+	dogtexture->Load((char*)"dogtexture.tga");
 	// instantiates objects in world and stores them in linked list. first object is dealt with differently.
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		if (firstobject == true)
 		{
@@ -99,16 +99,24 @@ void HelloGL::InitObjects()
 			// list length is used so when updating sceneobjects index doesn't go out of bounds.
 			listlength++;
 			// increases x position by 5 after instantiating object, so they are seperate
-			xpos += 5;
+			xpos += 10;
 			firstobject = false;
 		}
 		else
 		{
-			// same as before but not first object so doesn't make them head of linked list, just makes new head instead.
-			sceneobject = new BasicObject(catmesh, cattexture, xpos, ypos, zpos);
+			if (i < 5)
+			{
+				// same as before but not first object so doesn't make them head of linked list, just makes new head instead.
+				sceneobject = new BasicObject(dogmesh, dogtexture, xpos, ypos, zpos);
+			}
+			else
+			{
+				sceneobject = new BasicObject(horsemesh, horsetexture, xpos, ypos, zpos);
+			}
 			listlength++;
 			linkedlist->MakeNode(&linkedlist->head, sceneobject);
-			xpos += 5;
+			xpos += 10;
+
 		}
 	}
 	// sets up camera positions
@@ -163,7 +171,20 @@ void HelloGL::Update()
 	// loops through linked list, updating things.
 	for (int i = 0; i < listlength; i++)
 	{
-		linkedlist->GetNode(i)->data->Update();
+		if (i <= 3)
+		{
+			linkedlist->GetNode(i)->data->Update();
+		}
+		// individually animates certain objects
+		if (i == 5)
+		{
+			linkedlist->GetNode(i)->data->Rotate(0.0f, -2.5f, -10.0f, 1.0f);
+		}
+		if (i == 6)
+		{
+			linkedlist->GetNode(i)->data->Rotate(0.f, 2.5f, 10.0f, 1.0f);
+		}
+		
 	}
 	// redraws scene
 	glutPostRedisplay();
@@ -227,7 +248,6 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 	// cycles through objects on screen by using linked list, and sets it as currentobject and stops any non - player controlled animation on them, to allow user to manipulate.
 	if (key == 'j' && objectselectmode == true)
 	{
-		
 		index++;
 		if (index >= listlength)
 		{
@@ -242,14 +262,11 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 	// does same as above - but in opposite direction.
 	if (key == 'h' && objectselectmode == true)
 	{
-		
-		
 		index--;
 		if (index < 0)
 		{
 			index = listlength-1;
 		}
-		
 		currentobject->IsSelected();
 		currentobject = linkedlist->GetNode(index)->data;
 		currentobject->IsSelected();
@@ -261,17 +278,15 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 		objectselectmode = !objectselectmode;
 		std::cout << objectselectmode;
 	}
+	// changes texture to different texture.
 	if (key == 'r' && objectselectmode == true)
 	{
-		currentobject->ChangeTexture(cattexture);
+		currentobject->ChangeTexture(dogtexture);
 	}
 	if (key == 't' && objectselectmode == true)
 	{
 		currentobject->ChangeTexture(horsetexture);
 	}
-
-	
-	
 }
 /// <summary>
 /// used for mouse camera movement, takes in the x and y values.
@@ -337,6 +352,7 @@ void HelloGL::DrawUI()
 	 // draws that string, and string with control instructions.
 	HelloGL::DrawString(camerapos.c_str(),   200.0f, 200.0f);
 	HelloGL::DrawString("E to change camera mode, W, S and Mouse to Move, H and J to change object selected when in object selection mode",   250.0f, 250.0f);
+	HelloGL::DrawString("R and T to change texture of objects", 300.0f, 300.0f);
 	glFlush();
 	glutSwapBuffers();
 }
